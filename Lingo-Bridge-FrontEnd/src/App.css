@@ -27,7 +27,7 @@ body {
 
 /* Logo Styling */
 .logo {
-  max-width: 25%;
+  max-width: 200px;
   height: auto;
   margin-bottom: 20px;
 }
@@ -40,10 +40,10 @@ body {
   margin-bottom: 10px;
 }
 
-/* Button Styling
+/* Button Styling */
 .button {
   background-color: rgba(255, 255, 255, 0.2); /* Transparent white */
-  /* color: white;
+  color: white;
   font-size: 1rem;
   font-weight: bold;
   padding: 10px 20px;
@@ -54,4 +54,5 @@ body {
 }
 
 .button:hover {
-  background-color: rgb */
+  background-color: rgba(255, 255, 255, 0.4);
+}
