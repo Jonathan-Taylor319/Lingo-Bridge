@@ -16,6 +16,13 @@ body {
   text-align: center;
 }
 
+
+h1, h2, h3, p, .text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+
 /* Main container */
 .container {
   display: flex;
@@ -25,13 +32,6 @@ body {
   width: 100%;
 }
 
-
-/* Logo Styling */
-.logo {
-  max-width: 650px;
-  height: auto;
-  margin-bottom: 20px;
-}
 
 
 .aboutdiv {
@@ -54,8 +54,3 @@ body {
 
 }
 
-.aboutLogo {
-  height: 200px;
-  margin-top: 50px;
-  /* border-radius: 25%; */
-}

@@ -1,52 +1,27 @@
 import { createTheme } from '@mui/material/styles';
 
-// Define your custom theme
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#008080', // Teal (your preferred color)
-    },
-    secondary: {
-      main: '#3B82F6', // Blue
-    },
-    background: {
-      default: '#E6F4F1', // Light teal background
-    },
-    text: {
-      primary: '#f5f5f5',
-    },
-  },
   typography: {
-    fontFamily: '"Public Sans", sans-serif',
     h1: {
-      fontSize: '2rem',
-      fontWeight: 700,
+      color: 'white', // Text color
+      WebkitTextStroke: '2px rgba(0, 0, 0, 0.8)', // Thicker border
     },
     h2: {
-      fontSize: '1.75rem',
-      fontWeight: 600,
+      color: 'white', // Text color
+      WebkitTextStroke: '2px rgba(0, 0, 0, 0.8)', // Same for h2
+    },
+    h3: {
+      color: 'white', // Text color
+      WebkitTextStroke: '2px rgba(0, 0, 0, 0.8)', // Same for h3
     },
     body1: {
-      fontSize: '1rem',
-      lineHeight: 1.5,
+      color: '#444444', // Body text color
+      fontWeight: 'bold', // Optional: make body text bold
+      WebkitTextStroke: '1px rgba(0, 0, 0, 0.7)', // Thinner border for body text
     },
-  },
-  components: {
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#008080', // Match your branding
-        },
-      },
-    },
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none', // Remove uppercase text
-          fontWeight: 600,
-          borderRadius: '8px', // Rounded corners
-        },
-      },
+    body2: {
+      color: '#444444', // Body text color
+      WebkitTextStroke: '1px rgba(0, 0, 0, 0.7)', // Same for body2
     },
   },
 });

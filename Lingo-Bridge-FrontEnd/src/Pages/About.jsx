@@ -1,12 +1,10 @@
 import React from 'react';
 import CodePlatoonLogo from '../assets/CodePlatoonLogo.png'
 import Family from '../assets/family.png'
-import myLogo from '../assets/myLogo.jpg'
 
 export default function About() {
     return (
         <div className="aboutdiv">
-            <img src={myLogo} className='aboutLogo' />
             <h2>About Lingo Bridge</h2>
             <p>
                 Lingo Bridge helps translate modern slang for older generations, making communication across ages easier and 
