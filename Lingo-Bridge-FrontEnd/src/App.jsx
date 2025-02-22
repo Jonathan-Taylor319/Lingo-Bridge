@@ -1,18 +1,20 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline'; // Ensures consistent global styles
-import theme from './theme/theme'; // Import the theme
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme/theme';
 import TopAppBar from './components/TopAppBar';
 import Home from './pages/Home';
+import About from './pages/About'
 import './App.css';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Resets styles to match Material-UI defaults */}
+      <CssBaseline />
       <TopAppBar />
       <div className="main-content">
-        <Home />
+        {/* <Home /> */}
+        <About />
       </div>
     </ThemeProvider>
   );

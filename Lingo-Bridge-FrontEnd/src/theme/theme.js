@@ -13,7 +13,7 @@ const theme = createTheme({
       default: '#E6F4F1', // Light teal background
     },
     text: {
-      primary: '#333333', // Dark text
+      primary: '#f5f5f5',
     },
   },
   typography: {

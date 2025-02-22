@@ -25,34 +25,37 @@ body {
   width: 100%;
 }
 
+
 /* Logo Styling */
 .logo {
-  max-width: 200px;
+  max-width: 650px;
   height: auto;
   margin-bottom: 20px;
 }
 
-/* Header */
-.top_header {
-  font-size: 2rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 10px;
+
+.aboutdiv {
+  max-width: 700px; /* Prevents it from stretching too wide */
+  margin: 20px auto; /* Centers and provides space */
+  text-align: center;
+  line-height: 1.5; /* Improves readability */
 }
 
-/* Button Styling */
-.button {
-  background-color: rgba(255, 255, 255, 0.2); /* Transparent white */
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 20px;
-  border: 2px solid white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.CPLogo {
+  height: 1.2em; /* Slightly bigger for visibility */
+  width: auto; /* Maintain aspect ratio */
+  vertical-align: middle; /* Align with text */
+  margin-left: 8px; /* Extra spacing from text */
 }
 
-.button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+.familyPhoto{
+  height: 200px;
+  align-items: center;
+
+}
+
+.aboutLogo {
+  height: 200px;
+  margin-top: 50px;
+  border-radius: 25%;
 }
