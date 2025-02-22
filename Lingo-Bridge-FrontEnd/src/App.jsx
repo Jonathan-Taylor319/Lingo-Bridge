@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme/theme';
@@ -11,11 +12,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <BrowserRouter>
       <TopAppBar />
-      <div className="main-content">
-        {/* <Home /> */}
-        <About />
-      </div>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+      </Routes>
+      
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
