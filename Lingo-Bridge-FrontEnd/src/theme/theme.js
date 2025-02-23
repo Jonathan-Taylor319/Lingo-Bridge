@@ -2,26 +2,42 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
+    text: {
+      color: '#404040', // Slightly darker for readability
+      WebkitTextStroke: '3px black', // Black outline
+      textShadow: '3px 3px 4px rgba(0, 0, 0, 0.6)',
+    },
     h1: {
-      color: 'white', // Text color
-      WebkitTextStroke: '2px rgba(0, 0, 0, 0.8)', // Thicker border
+      color: '#404040', // Slightly darker for readability
+      WebkitTextStroke: '1px black', // Black outline
+      textShadow: '3px 3px 4px rgba(0, 0, 0, 0.6)',
     },
     h2: {
-      color: 'white', // Text color
-      WebkitTextStroke: '2px rgba(0, 0, 0, 0.8)', // Same for h2
+      color: '#404040',
+      WebkitTextStroke: '1px black',
+      textShadow: '3px 3px 4px rgba(0, 0, 0, 0.6)',
     },
     h3: {
-      color: 'white', // Text color
-      WebkitTextStroke: '2px rgba(0, 0, 0, 0.8)', // Same for h3
+      color: '#404040',
+      WebkitTextStroke: '1px black',
+      textShadow: '3px 3px 4px rgba(0, 0, 0, 0.6)',
+    },
+    p: {
+      color: '#404040',
+      WebkitTextStroke: '1px black',
+      textShadow: '3px 3px 4px rgba(0, 0, 0, 0.6)',
     },
     body1: {
-      color: '#444444', // Body text color
-      fontWeight: 'bold', // Optional: make body text bold
-      WebkitTextStroke: '1px rgba(0, 0, 0, 0.7)', // Thinner border for body text
+      color: '#404040',
+      WebkitTextStroke: '1px black', // Black outline
+      textShadow: '3px 3px 4px rgba(0, 0, 0, 0.6)',
+      fontWeight: 'bold',
     },
     body2: {
-      color: '#444444', // Body text color
-      WebkitTextStroke: '1px rgba(0, 0, 0, 0.7)', // Same for body2
+      color: '#404040',
+      WebkitTextStroke: '1px black',
+      textShadow: '3px 3px 4px rgba(0, 0, 0, 0.6)',
+      fontWeight: 'bold',
     },
   },
 });

@@ -1,17 +1,14 @@
-import React from "react";
+import { redirect } from "react-router";
 
-export default function SignUp() {
-
+export default function SignUpPage({ isLoggedIn, handleClick }) {
     return (
-        <>
-        <h2>Placeholder</h2>
-
-        <p>Work in progress......please be patient with us :D</p>
-        
-        
-        
-        </>
-    )
-
-}
-   
+      <>
+        <h2>Sign Up</h2>
+        <p>{isLoggedIn ? "You are logged in" : "You are logged out"}</p>
+        <button onClick={handleClick} redirect='/logged-in'>
+          {isLoggedIn ? "Log Out" : "Log In"}
+        </button>
+      </>
+    );
+  }
+  

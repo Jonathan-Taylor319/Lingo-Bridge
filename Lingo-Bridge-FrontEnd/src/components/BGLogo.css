@@ -15,5 +15,6 @@
     width: 125%; /* Increase width beyond 100% */
     height: 145%; /* Keep the aspect ratio */
     opacity: .07; /* Adjust opacity if needed */
+    pointer-events: none;
   }
   

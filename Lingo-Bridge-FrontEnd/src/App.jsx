@@ -1,33 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme/theme';
 import TopAppBar from './components/TopAppBar';
+import BGLogo from './components/BGLogo'
 import Home from './pages/Home';
 import About from './pages/About';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
+import LoggedInHome from './pages/LoggedInHome';
 import './App.css';
-import BgLogo from './components/BGLogo';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Managing the login state
+
+  const handleClick = () => {
+    setIsLoggedIn(prevState => !prevState);
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <BrowserRouter>
-        <BgLogo />
-        <TopAppBar />
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/sign-up" element={<SignUpPage />} />
-            <Route path="/sign-in" element={<SignInPage />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <TopAppBar isLoggedIn={isLoggedIn} handleClick={handleClick} />
+      <BGLogo />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/sign-up" element={<SignUpPage isLoggedIn={isLoggedIn} handleClick={handleClick} />} />
+          <Route path="/sign-in" element={<SignInPage isLoggedIn={isLoggedIn} handleClick={handleClick} />} />
+          <Route path="/logged-in" element={<LoggedInHome />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
