@@ -7,12 +7,12 @@ body {
   background-repeat: no-repeat, no-repeat;
   background-attachment: fixed;
   position: relative;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden; 
   display: flex;
-  flex-direction: column; /* Allows footer to stick at the bottom */
+  flex-direction: column; 
 }
 
-/* Dark overlay for contrast */
+
 body::before {
   content: "";
   position: absolute;
@@ -24,7 +24,7 @@ body::before {
   z-index: 0;
 }
 
-/* Logo with 24% opacity */
+
 body::after {
   content: "";
   position: fixed;
@@ -33,35 +33,35 @@ body::after {
   width: 100%;
   height: 100%;
   background: url("/myLogo.png") center/contain no-repeat;
-  opacity: 0.24; /* 24% opacity */
-  z-index: 0; /* Behind the overlay and content */
-  pointer-events: none; /* Prevent interaction with the logo */
+  opacity: 0.24;
+  z-index: 0; 
+  pointer-events: none;
 }
 
-/* Main container */
+
 .container {
   display: flex;
   margin-top: 60px;
   flex-direction: column;
-  align-items: center; /* Centers content horizontally */
-  justify-content: flex-start; /* Starts content from the top */
+  align-items: center; 
+  justify-content: flex-start; 
   width: 100%;
-  height: 100%; /* Fills the available vertical space */
+  height: 100%;
   padding: 20px;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
-  flex-grow: 1; /* Makes sure container grows to fill available space */
+  flex-grow: 1;
 }
 
-/* Typography */
+
 h1, h2, h3, p, .text, label {
-  color: #404040;
-  -webkit-text-stroke: 1px black;
-  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.6);
+  color: #F8F9FA;
+  -webkit-text-stroke: 0.5px black; 
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); 
 }
 
-/* About Section */
+
 .aboutdiv {
   max-width: 700px;
   margin: 20px auto;
@@ -69,7 +69,7 @@ h1, h2, h3, p, .text, label {
   line-height: 1.5;
 }
 
-/* Logo */
+
 .CPLogo {
   height: 1.2em;
   width: auto;
@@ -77,9 +77,41 @@ h1, h2, h3, p, .text, label {
   margin-left: 8px;
 }
 
-/* Family Photo */
+
 .familyPhoto {
   height: 200px;
   display: block;
   margin: auto;
+}
+
+.signUpForm {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.fancySearchButton {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+  border: none;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.fancySearchButton:hover {
+  background: linear-gradient(135deg, #3e8e41, #1e88e5);
+}
+
+.fancySearchButton:active {
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+  box-shadow: rgba(0, 0, 0, 0.3);
+  transform: translateY(4px);
 }

@@ -74,7 +74,7 @@ export default function TopAppBar({ isLoggedIn, handleClick }) {
           </Box>
 
           <Box sx={{ flexGrow: 1 }} />
-          {isLoggedIn && <AccountCircle fontSize='large' edge="start" onClick={handleMenuOpen}  />}
+          {isLoggedIn && <AccountCircle fontSize='large' edge="start"/>}
           {!isLoggedIn && <Button color="inherit" sx={{ mr: 1 }} component={Link} to="/sign-in"> Login </Button>}
           {!isLoggedIn && <Button color="inherit" component={Link} to="/sign-up"> Sign-Up </Button>}
           {isLoggedIn && <Button onClick={handleLogout} color="inherit">Sign Out</Button>}
