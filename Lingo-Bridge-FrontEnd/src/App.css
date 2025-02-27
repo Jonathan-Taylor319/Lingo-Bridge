@@ -55,11 +55,11 @@ body::after {
 }
 
 
-h1, h2, h3, p, .text, label {
+/* h1, h2, h3, p, .text, label {
   color: #F8F9FA;
   -webkit-text-stroke: 0.5px black; 
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); 
-}
+} */
 
 
 .aboutdiv {

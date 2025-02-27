@@ -15,7 +15,7 @@ export default function SignUpForm() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData); //change this to sending it to the back end
     };
