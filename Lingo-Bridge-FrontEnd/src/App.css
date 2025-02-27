@@ -84,14 +84,6 @@ body::after {
   margin: auto;
 }
 
-.signUpForm {
-  margin-top: 200px;
-  display: flex;
-  flex-direction: center;
-  align-items: center;
-  justify-content: center;
-}
-
 .fancySearchButton {
   padding: 15px 25px;
   font-size: 24px;
@@ -114,4 +106,42 @@ body::after {
   background: linear-gradient(135deg, #2a7f62, #2196f3);
   box-shadow: rgba(0, 0, 0, 0.3);
   transform: translateY(4px);
+}
+
+.signUpForm {
+  position: absolute;
+  margin-top: 15vh;
+  margin-right: 200%;
+  width: 200px;
+  max-width: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+
+fieldset {
+  border: none;
+  padding: 1rem 0;
+  width: 150%;
+}
+
+input {
+  width: 150%; 
+  height: 35px; 
+  /* padding: 5px 8px; */
+  font-size: 14px; 
+  border: 1px solid black;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+}
+
+@media (max-width: 768px) {
+  .signUpForm {
+    position: static; /* Allows normal flow on small screens */
+    width: 90%;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
