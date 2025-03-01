@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'user_accounts_app',
     'rest_framework',
     'rest_framework.authtoken'
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,28 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True # should testing and building should use this
+
+# CORS_ALLOW_ALL_ORIGINS = [ 
+    # use this if i want only allow specific domains to connect - Use this for production 
+# ]
+
+# - what methods do i want browsers able to do......
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE'
+    'PATCH',
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',     # To specify the body format (e.g., JSON)
+    'authorization',    # To allow the Authorization header with the OAuth token
+    'x-requested-with', # Optional for AJAX requests
 ]
 
 ROOT_URLCONF = 'lingo_bridge_proj.urls'

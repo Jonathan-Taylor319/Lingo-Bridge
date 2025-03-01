@@ -2,7 +2,6 @@ import React, {useState} from "react";
 
 export default function SignUpForm() {
     const [formData, setFormData] = useState({
-        email: '',
         username: '',
         password: '',
     })
@@ -21,22 +20,11 @@ export default function SignUpForm() {
     };
 
     return (
-        <div className="signUpForm">
+        <div className="signInForm">
             <form onSubmit= {handleSubmit} >
                 <fieldset>
                     <div>
-                        <label htmlFor="email">Email:</label>
-                        <input 
-                        type="email"
-                     id="email"
-                        name="email"
-                        value={ formData.email }
-                        onChange={ handleChange }
-                        required
-                    />
-                    </div>
-                    <div>
-                        <label htmlFor="username">Choose a Username:</label>
+                        <label htmlFor="username"> Username: </label>
                         <input 
                             type="text"
                             id="username"
@@ -46,7 +34,7 @@ export default function SignUpForm() {
                             required
                         />
                     </div>
-                        <label htmlFor="password">Choose a safe Password:</label>
+                        <label htmlFor="password"> Password: </label>
                          <input
                         type="password"
                         id="password"
@@ -56,7 +44,7 @@ export default function SignUpForm() {
                         required
                         />
                 </fieldset>
-                <button type="submit" style={{display:"block", width:"100%", marginLeft:"50%"}}>Sign Up!</button>
+                <button type="submit" style={{display:"block", width:"125%", marginLeft:"auto"}}>Log In</button>
             </form>
         </div>
     )

@@ -1,4 +1,4 @@
-import { redirect } from "react-router";
+import { redirect } from "react-router-dom";
 import SignUpForm from "../components/SignUpForm";
 
 export default function SignUpPage({ isLoggedIn, h2ndleClick }) {
