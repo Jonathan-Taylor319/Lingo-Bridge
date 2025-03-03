@@ -7,6 +7,7 @@ import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import LoggedInHome from './pages/LoggedInHome';
 import Profile from './pages/Profile';
+// import UserTokenContext from './contexts/UserTokenContext'
 import './App.css';
 
 
@@ -18,19 +19,21 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <TopAppBar isLoggedIn={isLoggedIn} handleClick={handleClick} />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/sign-up" element={<SignUpPage isLoggedIn={isLoggedIn} handleClick={handleClick} />} />
-          <Route path="/sign-in" element={<SignInPage isLoggedIn={isLoggedIn} handleClick={handleClick} />} />
-          <Route path="/logged-in" element={<LoggedInHome />} />
-          <Route path='profile' element={isLoggedIn && < Profile />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    // <UserTokenContext.Provider value={ userToken }>
+      <BrowserRouter>
+        <TopAppBar isLoggedIn={isLoggedIn} handleClick={handleClick} />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/sign-up" element={<SignUpPage isLoggedIn={isLoggedIn} handleClick={handleClick} />} />
+              <Route path="/sign-in" element={<SignInPage isLoggedIn={isLoggedIn} handleClick={handleClick} />} />
+              <Route path="/logged-in" element={<LoggedInHome />} />
+              <Route path='profile' element={isLoggedIn && < Profile />} />
+            </Routes>
+          </div>
+      </BrowserRouter>
+    // {/* </UserTokenContext.Provider> */}
   );
 }
 
