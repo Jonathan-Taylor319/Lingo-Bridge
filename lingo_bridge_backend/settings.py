@@ -81,8 +81,8 @@ DATABASES = {
         "NAME": "lingo_bridge_db",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "localhost",  
-        "PORT": 5454, # This is the port on the host machine (which will be mapped to 5432 in the container)
+        "HOST": "db",  
+        "PORT": 5432, # This is the port on the host machine (which will be mapped to 5432 in the container)
     }
 }
 

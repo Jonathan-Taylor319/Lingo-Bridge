@@ -11,3 +11,13 @@ class AllUsers(APIView):
         json_user = json.loads(serialized_user)
         return Response(json_user)
     
+class SelectedUser(APIView):
+    def get(self, request, id):
+        user = None
+        if type(id) == int:
+            user = User_Account.objects.get(id=id)
+        else:
+            user = User_Account.objects.get(user_name=id.title())
+            json_user=serialize("json", [user])
+            serialized_user = json.loads(json_user)[0]
+            return Response(serialized_user)

@@ -1,4 +1,10 @@
 services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
   db:
     image: postgres:15
     environment:
@@ -6,7 +12,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=lingo_bridge_db
     ports:
-      - '5454:5432'
+      - "5454:5432"
     volumes: 
       - postgres_data:/var/lib/postgresql/data
 
