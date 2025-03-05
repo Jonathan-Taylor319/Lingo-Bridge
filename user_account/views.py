@@ -1,23 +1,70 @@
+from django.shortcuts import render
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView
 from rest_framework.views import APIView, Response
-from .models import User_Account
-from django.core.serializers import serialize
-import json
+from .serializers import SignupSerializer, UpdateSerializer
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework import status
 
-# Create your views here.
-class AllUsers(APIView):
-    def get(self, request):
-        user = User_Account.objects.order_by("user_name")
-        serialized_user = serialize("json", user)
-        json_user = json.loads(serialized_user)
-        return Response(json_user)
+class SignupView(CreateAPIView):
+    serializer_class = SignupSerializer
+    permission_classes = [AllowAny]
+
+    def perform_create(self, serializer):
+        try:
+            user = serializer.save()
+            return Response({"message": "Account created successfully", "User": user.username}, status=status.HTTP_201_CREATED)
+        
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+class GetUserView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated] 
+    serializer_class = SignupSerializer
+
+    def get(self, request, *args, **kwargs):
+        try:
+            instance = self.request.user  # Get the authenticated user
+            if not hasattr(instance, 'AppUser'):
+                return Response({"error": "User profile does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+            serializer = self.get_serializer(instance)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+class DeleteUserView(DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_user(self):
+        return self.request.user
     
-class SelectedUser(APIView):
-    def get(self, request, id):
-        user = None
-        if type(id) == int:
-            user = User_Account.objects.get(id=id)
-        else:
-            user = User_Account.objects.get(user_name=id.title())
-            json_user=serialize("json", [user])
-            serialized_user = json.loads(json_user)[0]
-            return Response(serialized_user)
+    def perform_destroy(self, instance):
+        instance.delete()
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            instance = self.get_user()
+            self.perform_destroy(instance)
+            return Response({"message" : "Dealer profile removed"}, status=status.HTTP_204_NO_CONTENT)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
+class UpdateUserView(UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UpdateSerializer
+
+    def get_user(self):
+        return self.request.user
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        return instance
+
+    def put(self, request, *args, **kwargs):
+        instance = self.get_user()
+        serializer = self.get_serializer(instance, data=request.data, context={'request': request})
+        
+        if serializer.is_valid():
+                updated_instance = serializer.save()
+                return Response({"message": f'User: {updated_instance.username} updated successfully'}, status=status.HTTP_200_OK)
+
+        return Response({'error': 'Invalid data', 'details': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
