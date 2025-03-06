@@ -11,21 +11,15 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zd(u=5ard-2!#**sbaupez$_0(g82e)k-6b^mjn#3kr-l)i_ki'
+SECRET_KEY = 'django-insecure-xv@ifc5v#c+db%8(+*n_r_tdx8*^xmr(8qeu^4-&6k@ht0dlb0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,6 +39,7 @@ INSTALLED_APPS = [
     'users_app',
     'rest_framework',
     'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -84,11 +79,11 @@ WSGI_APPLICATION = 'lb_backend_proj.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "lb_db",
+        "NAME": "lingo_bridge_db",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "localhost",  
-        "PORT": 5454, # This is the port on the host machine (which will be mapped to 5432 in the container)
+        "HOST": "db",
+        "PORT": 5432, # The Django container and Postgres are on the same network now, so no need for port mapping
     }
 }
 

@@ -7,7 +7,6 @@ class UserProfile(models.Model):
     username = models.CharField(max_length=25, unique=True)
     email = models.EmailField(max_length=255, unique=True, validators=[EmailValidator("Enter a valid email address")])
     password = models.CharField(max_length=255)
-    profile_picture = models.ImageField(upload_to="profile_pics/", blank=True , null=True)
 
     #function to take password when created or updated to hash it for security will need to use check_password for login
     def save(self, *args, **kwargs):
@@ -16,4 +15,4 @@ class UserProfile(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.profile_picture}\n{self.username}\n{self.email}"
+        return f"\n{self.username}\n{self.email}"
