@@ -12,7 +12,7 @@ import UserTokenContext from './contexts/UserTokenContext'
 
 
 function App() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false); // Managing the login state
+  const [isLoggedIn, setIsLoggedIn] = useState(); // Managing the login state
   const [formData, setFormData] = useState({username: '', password:''});
   const [userToken, setUserToken] = useState(null)
 
@@ -35,7 +35,7 @@ function App() {
     <UserTokenContext.Provider value={ userToken }>
       <BrowserRouter>
         <TopAppBar isLoggedIn={isLoggedIn} handleClick={handleClick} />
-          <div className="container">
+          {/* <div className="container"> */}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -45,7 +45,7 @@ function App() {
               <Route path="/profile" element={isLoggedIn && < Profile />} />
               {/* <Route path='/logout' element={<Logout userToken={userToken} setUserToken={setUserToken}/>} /> */}
             </Routes>
-          </div>
+          {/* </div> */}
       </BrowserRouter>
     </UserTokenContext.Provider>
   );

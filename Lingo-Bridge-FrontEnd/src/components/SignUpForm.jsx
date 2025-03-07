@@ -2,7 +2,7 @@ export default function SignUpForm({ handleInputChange, formData, handleSubmit, 
 
     return (
         <>
-        {responseMsg && <h2>{responseMsg</h2>}
+        {responseMsg && <h2>{responseMsg}</h2>}
         <div className="signUpForm">
             <form onSubmit= {handleSubmit} >
                 <fieldset>

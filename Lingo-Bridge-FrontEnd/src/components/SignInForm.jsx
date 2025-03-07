@@ -12,7 +12,7 @@ export default function SignInForm({ handleInputChange, formData, handleSubmit, 
                 id="username"
                 name="username"
                 value={ formData.username }
-                onChange={ handleChange }
+                onChange={ handleInputChange }
                 required
                 />
                 <label htmlFor="password">Choose a safe Password:</label>
@@ -21,7 +21,7 @@ export default function SignInForm({ handleInputChange, formData, handleSubmit, 
                 id="password"
                 name="password"
                 value={ formData.password }
-                onChange={ handleChange }
+                onChange={ handleInputChange }
                 required
                 />
                 </fieldset>

@@ -1,16 +1,10 @@
 import { redirect } from "react-router-dom";
 import SignUpForm from "../components/SignUpForm";
 
-export default function SignUpPage({ isLoggedIn, h2ndleClick }) {
+export default function SignUpPage({ handleInputChange, Formdata, handleToken }) {
     return (
       <>
         <SignUpForm />
-
-        {/* <h2>this is just a place holder till we implement backend and tokens</h2>
-        <p>{isLoggedIn ? "You are logged in" : "You are logged out"}</p>
-        <button onClick={h2ndleClick} redirect='/logged-in'>
-          {isLoggedIn ? "Log Out" : "Log In"}
-        </button> */}
       </>
     );
   }
