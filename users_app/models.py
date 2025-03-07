@@ -1,18 +1,30 @@
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from django.core.validators import EmailValidator
-from django.contrib.auth.hashers import make_password, check_password
 
-# Create your models here.
-class UserProfile(models.Model):
-    username = models.CharField(max_length=25, unique=True)
-    email = models.EmailField(max_length=255, unique=True, validators=[EmailValidator("Enter a valid email address")])
-    password = models.CharField(max_length=255)
+# Trying to use user already in django but modified
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, username, password=None, **extra_fields):
+        """Creates and returns a regular user with an email and password."""
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=username, **extra_fields)
+        user.set_password(password)  # Hash the password
+        user.save(using=self._db)
+        return user
 
-    #function to take password when created or updated to hash it for security will need to use check_password for login
-    def save(self, *args, **kwargs):
-        if not self.pk or not check_password(self.password, getattr(UserProfile.objects.filter(pk=self.pk).first(), "password", "")):
-            self.password = make_password(self.password)
-        super().save(*args, **kwargs)
+
+# Custom User Model (Basic Abstract User)
+class CustomUser(AbstractBaseUser):
+    email = models.EmailField(unique=True)  # Email must be unique
+    username = models.CharField(max_length=150, unique=True)  # Username must be unique
+    password = models.CharField(max_length=255)  # Password field
+
+    objects = CustomUserManager()
+
+    # Specifies the unique identifier for login
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']  # 'email' must be provided when creating a user
 
     def __str__(self):
-        return f"\n{self.username}\n{self.email}"
+        return self.username  # Return username when displaying the user object
