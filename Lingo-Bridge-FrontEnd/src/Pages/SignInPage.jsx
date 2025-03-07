@@ -1,23 +1,39 @@
-import { useNavigate } from "react-router-dom";
-import SignInForm from "../components/SignInForm"
-import LoggedInHome from "./LoggedInHome";
+import { Navigate } from "react-router-dom";
+import SignInForm from "../components/SignInForm";
+import { useState } from "react";
 
-export default function SignInPage({ isLoggedIn, handleClick }) {
-    const navigate = useNavigate();
+export default function SignInPage({ handleInputChange, Formdata, handleToken }) {
+  const [responseMsg, setResponseMsg] = useState("");
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
-    const handleSignIn = () => {
-        handleClick();
-        navigate("/logged-in")
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const context = { username: Formdata.username, password: Formdata.password };
+    try {
+      const token = await login(context);
+      if (!token) {
+        setResponseMsg("Error logging in");
+      } else {
+        handleToken(token);
+        setShouldRedirect(true);
+      }
+    } catch (error) {
+      setResponseMsg("An error occurred. Please try again.");
     }
+  };
 
-    return (
-      <>
-        < SignInForm />
-        {/* <h1>{isLoggedIn ? "Welcome Back!" : "Please Sign In"}</h1>
-        <h4>Username</h4>
-        <h4>Password</h4>
-        <button onClick={handleSignIn}>Click here to sign in</button> */}
-      </>
-    );
+  if (shouldRedirect) {
+    return <Navigate to="/loggedinhome" />;
   }
-  
+
+  return (
+    <SignInForm
+      handleInputChange={handleInputChange}
+      formData={Formdata} // Ensure consistent naming
+      handleToken={handleToken}
+      handleSubmit={handleSubmit}
+      responseMsg={responseMsg}
+    />
+  );
+}

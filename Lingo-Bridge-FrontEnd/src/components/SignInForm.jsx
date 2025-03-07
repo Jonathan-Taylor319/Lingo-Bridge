@@ -1,51 +1,33 @@
-import React, {useState} from "react";
-
-export default function SignUpForm() {
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '',
-    })
-
-    const handleChange = (e) => {
-        const { name , value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log("Form Data:", formData); //change this to sending it to the back end
-    };
+export default function SignInForm({ handleInputChange, formData, handleSubmit, responseMsg }) {
 
     return (
+        <>
+        {responseMsg && <h2>{responseMsg</h2>}
         <div className="signInForm">
             <form onSubmit= {handleSubmit} >
                 <fieldset>
-                    <div>
-                        <label htmlFor="username"> Username: </label>
-                        <input 
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={ formData.username }
-                            onChange={ handleChange }
-                            required
-                        />
-                    </div>
-                        <label htmlFor="password"> Password: </label>
-                         <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={ formData.password }
-                        onChange={ handleChange }
-                        required
-                        />
+                <label htmlFor="username">Choose a Username:</label>
+                <input 
+                type="text"
+                id="username"
+                name="username"
+                value={ formData.username }
+                onChange={ handleChange }
+                required
+                />
+                <label htmlFor="password">Choose a safe Password:</label>
+                <input
+                type="password"
+                id="password"
+                name="password"
+                value={ formData.password }
+                onChange={ handleChange }
+                required
+                />
                 </fieldset>
-                <button type="submit" style={{display:"block", width:"125%", marginLeft:"auto"}}>Log In</button>
+                <button type="submit" style={{display:"block", width:"125%", marginLeft:"auto"}}>Sign Up!</button>
             </form>
         </div>
+        </>
     )
 }
