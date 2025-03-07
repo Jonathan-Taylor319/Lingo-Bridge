@@ -56,7 +56,7 @@ export default function SignUpForm() {
                         required
                         />
                 </fieldset>
-                <button type="submit" style={{display:"block", width:"100%", marginLeft:"50%"}}>Sign Up!</button>
+                <button type="submit" style={{display:"block", width:"125%", marginLeft:"auto"}}>Sign Up!</button>
             </form>
         </div>
     )

@@ -4,7 +4,6 @@ import SignUpForm from "../components/SignUpForm";
 export default function SignUpPage({ isLoggedIn, h2ndleClick }) {
     return (
       <>
-        <h2>Sign Up</h2>
         <SignUpForm />
 
         {/* <h2>this is just a place holder till we implement backend and tokens</h2>
