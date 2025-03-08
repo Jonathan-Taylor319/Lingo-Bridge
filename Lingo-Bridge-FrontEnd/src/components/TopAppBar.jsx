@@ -28,8 +28,10 @@ export default function TopAppBar({ isLoggedIn, handleClick }) {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="absolute">
+    <Box sx={{ flexGrow: 1  }}>
+      <AppBar position="absolute"   sx={{ 
+          height: '50px', // Reduce height of AppBar
+        }}>
         <Toolbar>
           <MenuIcon onClick={handleMenuOpen} />
           

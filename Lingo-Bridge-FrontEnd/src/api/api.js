@@ -4,9 +4,12 @@
 // turn it into json
 
 async function basicFetch(url, payload) {
-    const res = await fetch(url, payload)
-    const body = await res.json()
-    return body
+    const res = await fetch(url, payload);
+    const body = await res.json();
+    if (!res.ok) {
+        console.error("API Error:", res.status, body);
+    }
+    return body;
 }
 
 //take context (data) create a payload - "POST" header says i got json - body jsxonstringify convertes context to json and gives a response
@@ -42,8 +45,21 @@ export async function getUser(token) {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Token ${token}`
-        }
+        },
     }
     const body = await basicFetch("http://localhost:8000/user/get-user/", payload)
+    return body.result
+}
+
+export async function updateUser(token, context) {
+    const payload = {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json",
+            "Authorization": `Token ${token}`
+        },
+        body: JSON.stringify(context)
+    }
+    const body = await basicFetch("http://localhost:8000/user/update-user/", payload)
     return body.result
 }

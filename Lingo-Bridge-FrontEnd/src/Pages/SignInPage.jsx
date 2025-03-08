@@ -1,39 +1,44 @@
-import { Navigate } from "react-router-dom";
-import SignInForm from "../components/SignInForm";
-import { useState } from "react";
+import React, { useState } from "react";
+import UserTokenContext from "../contexts/TokenContext";
 
-export default function SignInPage({ handleInputChange, formData, handleToken }) {
-  const [responseMsg, setResponseMsg] = useState("");
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+export default function SignInPage( UserTokenContext) {       
+    const [formData, setFormData] = useState({
+        username: "",
+        password: "",
+    });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    const context = { username: formData.username, password: formData.password };
-    try {
-      const token = await login(context);
-      if (!token) {
-        setResponseMsg("Error logging in");
-      } else {
-        handleToken(token);
-        setShouldRedirect(true);
-      }
-    } catch (error) {
-      setResponseMsg("An error occurred. Please try again.");
-    }
-  };
+    // handleChange - lets us update input field
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-  if (shouldRedirect) {
-    return <Navigate to="/loggedinhome" />;
-  }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Here, you can perform the action after the form is submitted, like calling an API
+        console.log(formData); // For example, log the form data to the console
+    };
 
-  return (
-    <SignInForm
-      handleInputChange={handleInputChange}
-      formData={formData} // Ensure consistent naming
-      handleToken={handleToken}
-      handleSubmit={handleSubmit}
-      responseMsg={responseMsg}
-    />
-  );
+    return (
+        <form onSubmit={handleSubmit} className="signInForm">  
+            <label htmlFor="username">User Name:</label>
+            <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                value={ formData.username }
+                onChange={ handleChange }
+            />
+            <label htmlFor="password">Password</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password"
+                value={ formData.password }
+                onChange={ handleChange }
+            />     
+            <button type="submit" className='infoFormButton' style={{marginTop:"10px", alignSelf:"center"}}>Sign in</button>
+        </form>       
+    );
 }
+
+
