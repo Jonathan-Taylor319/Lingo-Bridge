@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';  
+import { Link, useNavigate, useLocation } from 'react-router-dom';  
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -27,6 +27,8 @@ export default function TopAppBar({ isLoggedIn, handleClick }) {
     navigate("/");
   };
 
+  const location = useLocation()
+  
   return (
     <Box sx={{ flexGrow: 1  }}>
       <AppBar position="absolute"   sx={{ 
@@ -77,8 +79,8 @@ export default function TopAppBar({ isLoggedIn, handleClick }) {
 
           <Box sx={{ flexGrow: 1 }} />
           {isLoggedIn && <AccountCircle fontSize='large' edge="start"/>}
-          {!isLoggedIn && <Button color="inherit" sx={{ mr: 1 }} component={Link} to="/sign-in"> Sign In </Button>}
-          {!isLoggedIn && <Button color="inherit" component={Link} to="/sign-up"> Sign Up </Button>}
+          {!isLoggedIn && location.pathname !== "/sign-in" && <Button color="inherit" sx={{ mr: 1 }} component={Link} to="/sign-in"> Sign In </Button>}
+          {!isLoggedIn && location.pathname !== "/sign-up" && <Button color="inherit" component={Link} to="/sign-up"> Sign Up </Button>}
           {isLoggedIn && <Button onClick={handleLogout} color="inherit">Sign Out</Button>}
         </Toolbar>
       </AppBar>

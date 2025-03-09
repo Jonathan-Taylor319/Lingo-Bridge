@@ -34,8 +34,8 @@ export default function SignUpPage() {
       const { body, status, statusText } = response
       const { username, email, password } = body
       
-      console.log({ body, status, statusText })
-      console.log({ username, email, password })
+      // console.log({ body, status, statusText })
+      // console.log({ username, email, password })
       
       if (status >= 200 && status < 300) {  // Check if response is successful
         setMessage(`That's some OHIO RIZZ! User ${formData.username} created!`)

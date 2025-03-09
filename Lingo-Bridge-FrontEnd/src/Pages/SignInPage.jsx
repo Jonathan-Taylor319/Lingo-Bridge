@@ -34,39 +34,22 @@ export default function SignInPage() {
             const response = await login(formData)
             
             // if credentials good = token string, if not api/error
-            console.log(response)
+            // console.log(response)
 
             if (typeof response === "string" && response.length > 30) {
                 setUserToken(response.token);
             sessionStorage.setItem("userToken", response.token);
             navigate("/signedinhome");
-        } else if (response.errors) { 
-            // If the API returns field-specific errors
-            const errorMessages = Object.entries(response.errors)
-                .map(([field, messages]) => `${field}: ${messages.join(", ")}`)
-                .join("\n");
-            setErrorMessage(errorMessages);
-        } else {
-            setErrorMessage("Login failed. Please check your credentials.");
+        } else { 
+            setErrorMessage("SKIBIDI TOILET, YOU SUS! check username and password...make sure you have an account BOZO!")
         }
-    } catch (error) {
-        console.error("Error logging in:", error);
-        
-        // If the API returned a 400 response with JSON errors
-        if (error.response && error.response.status === 400) {
-            const errorData = await error.response.json();
-            const errorMessages = Object.entries(errorData)
-                .map(([field, messages]) => `${field}: ${messages.join(", ")}`)
-                .join("\n");
-            setErrorMessage(errorMessages);
-        } else {
-            setErrorMessage("An error occurred. Please try again later.");
+        } catch (error) {
+            setErrorMessage("A error occured. Please try later.")
+        }  finally {
+            setIsLoading(false)
         }
-    } finally {
-        setIsLoading(false);
     }
-};
-
+    
     return (
         <>
             <h2 sx={{ self: "center" }}>No Cap 🧢 the Hype is real! Sign In:</h2>
@@ -91,7 +74,26 @@ export default function SignInPage() {
                     {isLoading ? "Signing in..." : "Sign in"}
                 </button>
             </form>
-            {errorMessage && <p style={{ color: "red", textAlign: "center" }}>{errorMessage}</p>}       
+             {/* Error Message */}
+             {errorMessage && (
+                <div 
+                    style={{
+                        background: 'linear-gradient(135deg, #2a7f62, #2196f3)',
+                        color: 'white',
+                        border: '2px solid black',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+                        padding: '20px',
+                        borderRadius: '8px',
+                        maxWidth: "500px",
+                        margin: '20px auto',
+                        textAlign: 'center',
+                        fontSize: '16px',
+                        whiteSpace: 'pre-line'
+                    }}
+                >
+                    {errorMessage}
+                </div>
+            )}
         </>
     )
 }
