@@ -1,16 +1,17 @@
-// basic function - goes to url to grab data
-// payload is our request
-// fetch - sends and gets response
-// turn it into json
-
 async function basicFetch(url, payload) {
-    const res = await fetch(url, payload)
-    const body = await res.json()
-    return body
+    const res = await fetch(url, payload);
+    
+    // Capture the status and statusText from the response
+    const status = res.status;
+    const statusText = res.statusText;
+
+    // Parse the response body as JSON
+    const body = await res.json();
+
+    // Return both the response body and server response details (status, statusText)
+    return { body, status, statusText };
 }
 
-//take context (data) create a payload - "POST" header says i got json - body jsxonstringify convertes context to json and gives a response
-//repeat as needed to create other crud operations needed
 export async function signup(context) {
     const payload = {
         method: "POST",
@@ -18,12 +19,13 @@ export async function signup(context) {
             "Content-Type": "application/json",   
         },
         body: JSON.stringify(context)
-    }
-    const body = await basicFetch("http://localhost:8000/user/signup/", payload)
-    return body
+    };
+    const { body, status, statusText } = await basicFetch("http://localhost:8000/user/signup/", payload);
+    
+    // Return the full response including body and status
+    return { body, status, statusText };
 }
 
-//will only return a token
 export async function login(context) {
     const payload = {
         method: "POST",
@@ -31,9 +33,11 @@ export async function login(context) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(context)
-    }
-    const body = await basicFetch("http://localhost:8000/user/get-token/", payload)
-    return body.token
+    };
+    const { body, status, statusText } = await basicFetch("http://localhost:8000/user/get-token/", payload);
+    
+    // Return the token along with status info
+    return { token: body.token, status, statusText };
 }
 
 export async function getUser(token) {
@@ -43,7 +47,9 @@ export async function getUser(token) {
             "Content-Type": "application/json",
             "Authorization": `Token ${token}`
         }
-    }
-    const body = await basicFetch("http://localhost:8000/user/get-user/", payload)
-    return body.result
+    };
+    const { body, status, statusText } = await basicFetch("http://localhost:8000/user/get-user/", payload);
+    
+    // Return the user data along with status info
+    return { user: body.result, status, statusText };
 }

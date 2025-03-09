@@ -112,8 +112,21 @@ body::after {
   z-index: 10;
 }
 
-.signInMessage {
+.signUpBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers children horizontally */
+  justify-content: center; /* Centers children vertically */
+  height: 50vh; /* Full viewport height to center the content */
+}
+
+.signUpAlert {
   background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 25px;
+  text-align: center; /* Ensures text inside is centered */
+  color: white; /* Makes text readable on dark background */
+  width: 100%;
 }
 
 @media (max-width: 768px) {
