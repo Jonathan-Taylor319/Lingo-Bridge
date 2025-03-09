@@ -4,8 +4,9 @@ import Family from '../assets/family.png';
 
 export default function About() {
     return (
-        <div className="aboutdiv">
+        <>
             <h2>About Lingo Bridge</h2>
+        <div className="aboutdiv">
 
             <h4>What is Lingo Bridge?</h4>
             <p>
@@ -27,7 +28,7 @@ export default function About() {
             <img src={Family} className="familyPhoto" alt="Jonathan and his family" />
             <p>
                 Hi, I'm Jonathan, a developer and proud graduate of  
-                <a href="https://www.codeplatoon.org/" target="_blank" rel="noopener noreferrer">  
+                <a href="https://www.codeplatoon.org/" target="_blank" rel="noopener noreferrer" style={{color:"black"}}>  
                     <img src={CodePlatoonLogo} alt="Code Platoon Logo" className="CPLogo" /> Code Platoon
                 </a>.  
                 The idea for Lingo Bridge came from joking around with my kids and fiancée about modern slang. My fiancée 
@@ -38,6 +39,7 @@ export default function About() {
                 as much as Iive enjoyed building it!
             </p> 
         </div>
+        </>
     );
 }
 

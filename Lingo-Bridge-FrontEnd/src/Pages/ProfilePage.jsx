@@ -1,0 +1,13 @@
+
+import UserProfile from '../components/UserProfile'
+
+
+export default function ProfilePage() {
+
+    return (
+        <>
+        <UserProfile />
+        <p>something?</p>
+        </>
+    )
+}

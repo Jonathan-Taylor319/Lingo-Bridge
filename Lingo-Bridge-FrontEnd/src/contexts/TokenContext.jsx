@@ -13,8 +13,8 @@ export const UserTokenProvider = ({ children }) => {
   };
 
   // Set token from session storage when app loads
-  //they will have to re-log when closing tab/browser
-  //if you wanted to persist change sessionStorage to localStorage
+  // they will have to re-log when closing tab/browser
+  // if you wanted to persist change sessionStorage to localStorage
   useEffect(() => {
     const savedToken = sessionStorage.getItem("userToken")
     if (savedToken) {
@@ -27,9 +27,12 @@ export const UserTokenProvider = ({ children }) => {
     setToken(null);
   };
 
+  // Derive auth status from token
+  const isAuthenticated = token !== null;
+
   // Wrap the app with UserTokenContext.Provider to supply the state globally
   return (
-    <UserTokenContext.Provider value={{ token, setUserToken, clearUserToken }}>
+    <UserTokenContext.Provider value={{ token, setUserToken, clearUserToken, isAuthenticated }}>
       {children}
     </UserTokenContext.Provider>
   );
