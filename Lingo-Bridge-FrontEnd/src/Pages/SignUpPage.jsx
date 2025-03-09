@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { signup } from "../../api/api";  // Import your API call for signup
+import { signup } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -7,56 +8,91 @@ export default function SignUpPage() {
     username: "",
     password: "",
   });
-  const [message, setMessage] = useState("");  // To store success or error messages
-  const [messageType, setMessageType] = useState(""); // "success" or "error"
+  const [message, setMessage] = useState("")
+  const [messageType, setMessageType] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const navigate = useNavigate()
 
   // handleChange - lets us update input field
   // setForm - update correct field and the ...prev will leave what was already there
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   // handleSubmit - submits the form and sends the data to the API
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true)
     
-    // Here we call the signup API function, passing the formData
     try {
-      const response = await signup(formData);  // Call the signup API with form data
+      const response = await signup(formData);
+      const { body, status, statusText } = response
+      const { username, email, password } = body
+      
+      console.log({ body, status, statusText })
+      console.log({ username, email, password })
+      
+      if (status >= 200 && status < 300) {  // Check if response is successful
+        setMessage(`That's some OHIO RIZZ! User ${formData.username} created!`)
+        setMessageType("success")
+  
+        // Clear form fields after successful signup
+        setFormData({ email: "", username: "", password: "" })
 
-      // If the signup is successful, show success message
-      setMessage("Signup successful! Welcome!");
-      setMessageType("success");
-
-      // Clear form fields after successful signup
-      setFormData({ email: "", username: "", password: "" });
+        //wait 1.5 seconds and then redirect
+        setTimeout(() => {
+        navigate("/sign-in")
+        }, 1500)
+      } else {
+          // declare issues with POST to apply with message
+          // .map loops through the item in body.username(etc) and adds the string interpolation before it
+          const errors = [
+            ...(body?.username?.map(msg => `Username: ${msg}`) || []),
+            ...(body?.email?.map(msg => `Email: ${msg}`) || []),
+            ...(body?.password?.map(msg => `Password: ${msg}`) || []),
+          ].filter(Boolean)
+          const errorMessage = errors.length ? errors.join("\n") : statusText
+        setMessage(`Straight Dog Water BROOOOOOO! Bad Request:\n ${errorMessage}`)
+        setMessageType("error");
+      }
     } catch (error) {
-      // If there's an error, show an error message
-      setMessage("Signup failed. Please try again.");
-      setMessageType("error");
+      setMessage(`Signup failed: ${error.message || "Unexpected error"}`)
+      setMessageType("error")
+    } finally {
+      setTimeout(() => {
+        setIsSubmitting(false)
+      }, 3000)
     }
-  };
-
+  }
+  
   return (
     <div>
-      {/* Display success or error message */}
       {message && (
         <div
-          style={{
-            color: messageType === "success" ? "green" : "red",
-            textAlign: "center",
-            marginBottom: "20px",
-          }}
+        style={{
+          background: 'linear-gradient(135deg, #2a7f62, #2196f3)',
+          color: 'white',
+          border: '2px solid black',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+          padding: '20px',
+          borderRadius: '8px',
+          maxWidth: "500px",
+          margin: '20px auto',
+          textAlign: 'center',
+          fontSize: '16px',
+          whiteSpace: 'pre-line'
+        }}
         >
           {message}
         </div>
       )}
-
-      <form className="userInfoForm" onSubmit={handleSubmit}>
+      <h2 sx={{self:"center"}}>Don't be mid Bozo 🤡 Sign up and learn now:</h2>
+      <form className="signUpForm" onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
         <input 
           type="email" 
@@ -74,7 +110,6 @@ export default function SignUpPage() {
           value={formData.username} 
           onChange={handleChange} 
         />
-        
         <label htmlFor="password">Password:</label>
         <input 
           type="password" 
@@ -82,14 +117,9 @@ export default function SignUpPage() {
           name="password" 
           value={formData.password} 
           onChange={handleChange} 
-        />     
-
-        <button 
-          type="submit" 
-          style={{display: "block", marginTop: "20px", marginLeft: "auto", marginRight: "auto"}}
-        >
-          Sign Up
-        </button>
+        />    
+        <button type="submit" style={{display: "block", marginTop: "20px", marginLeft: "auto", marginRight: "auto"}} disabled={isSubmitting}>
+          {isSubmitting ? "Signing Up...." : "Sign Up"}</button>
       </form>
     </div>
   );

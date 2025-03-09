@@ -1,16 +1,26 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 // Use createContext function to create a context
-const UserTokenContext = createContext();
+const UserTokenContext = createContext()
 
-// Create a provider to supply the state
+// Create a provider to supply and manage the state
 export const UserTokenProvider = ({ children }) => {
-  const [token, setToken] = useState(null); // Manage the token state
+  const [token, setToken] = useState(null)
 
-  // Function to update "set" the user token    
+  // Function to update the user token    
   const setUserToken = (newToken) => {
     setToken(newToken);
   };
+
+  // Set token from session storage when app loads
+  //they will have to re-log when closing tab/browser
+  //if you wanted to persist change sessionStorage to localStorage
+  useEffect(() => {
+    const savedToken = sessionStorage.getItem("userToken")
+    if (savedToken) {
+      setToken(savedToken)
+    }
+  }, [])
 
   // Function to remove the token (for logout, etc.)    
   const clearUserToken = () => {

@@ -53,8 +53,8 @@ body::after {
 }
 
 .aboutdiv {
-  max-width: 700px;
-  margin: 18% auto;
+  max-width: 1000px;
+  margin: auto;
   text-align: center;
   line-height: 1.5;
   background-color: rgba(0, 0, 0, 0.7);
@@ -100,8 +100,7 @@ body::after {
   transform: translateY(4px);
 }
 
-.userInfoForm, .signInForm {
-  margin-top: 20vh;
+.signUpForm, .signInForm {
   margin-left: auto;
   margin-right: auto;
   width: 250px;
@@ -130,7 +129,7 @@ body::after {
 }
 
 @media (max-width: 768px) {
-  .userInfoForm, .signInForm {
+  .signUpForm, .signInForm {
     width: 65%;
     max-width: 350px;
     margin-left: auto;
@@ -140,14 +139,8 @@ body::after {
 }
 
 
-fieldset {
-  border: none;
-  padding: 1rem 0;
-  width: 250%;
-}
-
 input {
-  width: 85%; 
+  width: 75%; 
   height: 20px; 
   font-size: 14px;
   font-family: 'Oswald'; 
