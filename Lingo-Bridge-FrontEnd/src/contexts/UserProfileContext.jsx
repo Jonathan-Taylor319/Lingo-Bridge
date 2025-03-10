@@ -1,47 +1,47 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useUserToken } from './TokenContext'
 import { getUser } from "../api/api";
 
-const UserProfileContext = createContext();
+const UserProfileContext = createContext()
 
 export const UserProfileProvider = ({ children }) => {
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState(null)
+  const { token } = useUserToken()
 
-  // Load profile from sessionStorage if it exists
   useEffect(() => {
-    // Check if the profile exists in sessionStorage before attempting to parse
-    const storedProfile = sessionStorage.getItem("profile");
-
-    if (storedProfile) {
-      try {
-        setProfile(JSON.parse(storedProfile)); // Parse the profile only if it exists
-      } catch (error) {
-        console.error("Error parsing profile from sessionStorage:", error);
-      }
-    } else {
+    if (token) {
       const fetchProfile = async () => {
         try {
-          const user = await getUser(); // Fetch profile from API if not in sessionStorage
-          setProfile(user);
-          sessionStorage.setItem("profile", JSON.stringify(user)); // Store it in sessionStorage
+          const user = await getUser(token)
+          setProfile(user)
+          sessionStorage.setItem("profile", JSON.stringify(user))
         } catch (error) {
-          console.error("Error fetching profile:", error);
+          console.error("error fetching profile:", error)
         }
-      };
-      fetchProfile();
+      }
+      fetchProfile
+    } else {
+      const storedProfile = sessionStorage.getItem("profile")
+      if (storedProfile) {
+        try {
+          setProfile(JSON.parse(storedProfile))
+        } catch (error) {
+          console.error("error parsing profile from sessionStorage", error)
+        }
+      }
     }
-  }, [])
+  }, [token] )
 
-  // Logout: Clear profile from sessionStorage
   const logout = () => {
-    setProfile(null); // Clear profile from state
-    sessionStorage.removeItem("profile"); // Remove profile from sessionStorage
-  };
+    setProfile(null)
+    sessionStorage.removeItem("profile")
+  }
 
-  return (
+  return(
     <UserProfileContext.Provider value={{ profile, logout }}>
-      {children}
+      { children }
     </UserProfileContext.Provider>
-  );
-};
+  )
+}
 
-export const useUserProfile = () => useContext(UserProfileContext);
+export const useUserProfile = () => useContext(UserProfileContext)

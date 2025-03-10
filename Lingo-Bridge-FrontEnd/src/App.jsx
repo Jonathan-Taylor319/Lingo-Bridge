@@ -13,7 +13,7 @@ import SignedInHome from './Pages/SignedInHome';
 import ProfilePage from './Pages/ProfilePage';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false)
 
   useEffect(() => {
     const token = sessionStorage.getItem("userToken")
@@ -25,7 +25,7 @@ function App() {
       <UserTokenProvider>
         <UserProfileProvider>
           <BrowserRouter>
-            <TopAppBar isLoggedIn={isLoggedIn} />
+            <TopAppBar isLoggedIn={ isLoggedIn } />
             <div className="container">
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -33,7 +33,7 @@ function App() {
                 <Route path="/sign-up" element={<SignUpPage />} />
                 <Route path="/sign-in" element={<SignInPage />} />
                 <Route path="/signedinhome" element={ <ProtectedRoute isLoggedIn={ isLoggedIn }> <SignedInHome /></ProtectedRoute> } />
-                <Route path="/profilepage" element={ <ProtectedRoute isLoggedIn={ isLoggedIn}> <ProfilePage /></ProtectedRoute> } />
+                <Route path="/profilepage" element={ <ProtectedRoute isLoggedIn={ isLoggedIn }> <ProfilePage /></ProtectedRoute> } />
               </Routes>
             </div>
           </BrowserRouter>
