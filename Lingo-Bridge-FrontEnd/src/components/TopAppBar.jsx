@@ -55,7 +55,7 @@ export default function TopAppBar({}) {
           >
             <MenuItem onClick={ handleMenuClose }component={Link} to='/about' sx={{display: 'flex', justifyContent: 'center', textAlign: 'center', color:"white"}}>About
             </MenuItem>
-            <MenuItem onClick={handleMenuClose} sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center', textAlign: 'center', color:"white"}}>
+            <MenuItem onClick={handleMenuClose} sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center', color:"white"}}>
               {!isAuthenticated && <Link to='/' style={{ color: "white", textDecoration: 'none' }}>Home</Link>}
               {isAuthenticated && <Link to='/signedinhome' style={{ color: "white", textDecoration: 'none' }}>Home</Link>}
             </MenuItem>

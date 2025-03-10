@@ -34,11 +34,11 @@ export default function SignInPage() {
             const response = await login(formData)
             
             // if credentials good = token string, if not api/error
-            // console.log(response)
+            //console.log(response)
 
             if (typeof response === "string" && response.length > 30) {
-                setUserToken(response.token);
-            sessionStorage.setItem("userToken", response.token);
+                setUserToken(response);
+            sessionStorage.setItem("userToken", response);
             navigate("/signedinhome");
         } else { 
             setErrorMessage("SKIBIDI TOILET, YOU SUS! check username and password...make sure you have an account BOZO!")
