@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { UserTokenProvider } from './contexts/TokenContext';
-// import { UserInfoProvider } from './contexts/UserInfoContext';
+import { UserInfoProvider } from './contexts/UserInfoContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './guards/ProtectedRoute';
 import TopAppBar from './components/TopAppBar';
@@ -24,7 +24,7 @@ function App() {
 
   return (
       <UserTokenProvider>
-        {/* <UserInfoProvider> */}
+        <UserInfoProvider>
           <BrowserRouter>
             <TopAppBar isAuthenticated={ isAuthenticated } />
             <div className="container">
@@ -38,7 +38,7 @@ function App() {
               </Routes>
             </div>
           </BrowserRouter>
-        {/* </UserInfoProvider> */}
+        </UserInfoProvider>
       </UserTokenProvider>
   );
 }
