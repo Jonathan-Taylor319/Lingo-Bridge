@@ -5,18 +5,17 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu'; 
 import MenuItem from '@mui/material/MenuItem';
-import UserTokenContext from '../contexts/TokenContext'
+import UserTokenContext from '../contexts/TokenContext';
+import { UserInfoContext } from '../contexts/UserInfoContext';
 
-export default function TopAppBar({}) {
-  //imported context 
+export default function TopAppBar() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-
-  const { isAuthenticated, clearUserToken } = useContext(UserTokenContext)
+  const { userName, avatarUrl } = useContext(UserInfoContext);
+  const { isAuthenticated, clearUserToken } = useContext(UserTokenContext);
 
   const handleMenuOpen = (e) => {
     setAnchorEl(e.currentTarget);
@@ -27,54 +26,87 @@ export default function TopAppBar({}) {
   };
 
   const handleLogout = () => {
-    clearUserToken()
-    sessionStorage.removeItem("userToken")
-    navigate("/")
-  }
+    clearUserToken();
+    sessionStorage.removeItem("userToken");
+    navigate("/");
+  };
 
-  const location = useLocation()
-  
+  const location = useLocation();
+
   return (
-    <Box sx={{ flexGrow: 1  }}>
-      <AppBar position="absolute"   sx={{ 
-          height: '50px', // Reduce height of AppBar
-        }}>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar 
+        position="absolute"
+        sx={{ 
+          background: "rgba(0, 0, 0, 0.7)", 
+          minHeight: { xs: '50px', sm: '60px' }, 
+          backdropFilter: "blur(10px)" 
+        }}
+      >
         <Toolbar>
-          <MenuIcon onClick={handleMenuOpen} />
-          
+          <MenuIcon onClick={handleMenuOpen} sx={{ cursor: "pointer", color: "white" }} />
+
           <Menu
-            anchorEl={anchorEl}  
-            open={Boolean(anchorEl)}  
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
             onClose={handleMenuClose}
             PaperProps={{
-              sx: {
-                backgroundColor: "#333",  // Set background color for the Menu
-                borderRadius: 2,  // Optional: rounded corners
-              },
+              sx: { backgroundColor: "#222", color: "white", borderRadius: 2 }
             }}
           >
-            <MenuItem onClick={ handleMenuClose }component={Link} to='/about' sx={{display: 'flex', justifyContent: 'center', textAlign: 'center', color:"white"}}>About
+            <MenuItem onClick={handleMenuClose} component={Link} to='/about'>About</MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <Link to={isAuthenticated ? '/signedinhome' : '/'} style={{ color: "white", textDecoration: 'none' }}>
+                Home
+              </Link>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose} sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center', color:"white"}}>
-              {!isAuthenticated && <Link to='/' style={{ color: "white", textDecoration: 'none' }}>Home</Link>}
-              {isAuthenticated && <Link to='/signedinhome' style={{ color: "white", textDecoration: 'none' }}>Home</Link>}
-            </MenuItem>
-            {isAuthenticated && ( <MenuItem onClick={ handleMenuClose }component={Link} to='/profilepage' sx={{display: 'flex', justifyContent: 'center', textAlign: 'center', color:"white"}}>Profile
-            </MenuItem>)}
-        
+            {isAuthenticated && (
+              <MenuItem onClick={handleMenuClose} component={Link} to='/profilepage'>
+                Profile
+              </MenuItem>
+            )}
           </Menu>
 
-          <Box sx={{ position: "absolute", left: "50%", transform: "translateX(-50%)" }}>
-            <Typography variant="h6" component="div">
+        {isAuthenticated && (
+          <>
+            {/* Use avatarUrl if available */}
+            <img 
+              src={avatarUrl} 
+              alt="User Avatar" 
+              style={{ width: 40, height: 40, borderRadius: '50%', marginRight: '10px', paddingLeft: '25px'}} 
+            />
+          </>
+        )}
+            <Typography variant="subtitle1" sx={{ color: 'white', paddingLeft:'10px'}}>
+              {userName}
+            </Typography>
+
+          <Box sx={{ position: "absolute", left: "50%", transform: "translateX(-50%)", textAlign: "center" }}>
+            <Typography 
+              variant="h6" 
+              sx={{ fontSize: { xs: "14px", sm: "18px" }, color: "white" }}
+            >
               - We Bridge the Gap of Generational Lingo -
             </Typography>
           </Box>
 
           <Box sx={{ flexGrow: 1 }} />
-          {isAuthenticated && <AccountCircle fontSize='large' edge="start"/>}
-          {!isAuthenticated && location.pathname !== "/sign-in" && <Button color="inherit" sx={{ mr: 1 }} component={Link} to="/sign-in"> Sign In </Button>}
-          {!isAuthenticated && location.pathname !== "/sign-up" && <Button color="inherit" component={Link} to="/sign-up"> Sign Up </Button>}
-          {isAuthenticated && <Button onClick={handleLogout} color="inherit">Sign Out</Button>}
+
+          {!isAuthenticated && location.pathname !== "/sign-in" && (
+            <Button color="inherit" sx={{ mr: 1 }} component={Link} to="/sign-in">
+              Sign In
+            </Button>
+          )}
+          {!isAuthenticated && location.pathname !== "/sign-up" && (
+            <Button color="inherit" component={Link} to="/sign-up">
+              Sign Up
+            </Button>
+          )}
+          {isAuthenticated && (
+            <Button onClick={handleLogout} color="inherit">
+              Sign Out
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

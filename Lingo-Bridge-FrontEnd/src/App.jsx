@@ -19,7 +19,6 @@ function App() {
     const token = sessionStorage.getItem("userToken")
     //change the state dependent if we have a token
     setIsAuthenticated(!!token)
-    console.log({isAuthenticated})
   },[])
 
   return (

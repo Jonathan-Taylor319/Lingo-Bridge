@@ -1,43 +1,53 @@
-import React, { createContext, useEffect, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react";
+import UserTokenContext from "./TokenContext";
 
-const UserInfoContext = createContext()
+const UserInfoContext = createContext();
 
 export const UserInfoProvider = ({ children }) => {
-    const [userName, setUsername] = useState("")
-    //don't think i need but maybe in future use?
-    const [userEmail, setuserEmail] = useState ("")
+    const { token } = useContext(UserTokenContext);
+    const [userName, setUserName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
+    const [avatarUrl, setAvatarUrl] = useState(null); // Store avatar URL
 
-    const setUserName = (newName) => {
-        setUsername(newName)
-        sessionStorage.setItem("userName", newName)
-    }
-
-    const setUserEmail = (newEmail) => {
-        setuserEmail(newEmail)
-        sessionStorage.setItem("userEmail", newEmail)
-    }
+    const generateAvatar = (username) => {
+        // Use the new base URL and replace "Eden" with the user's username
+        return `https://api.dicebear.com/9.x/bottts/svg?seed=${username}`;
+    };
 
     useEffect(() => {
-        const savedName = sessionStorage.getItem("username")
-        if (savedName) {
-            setUsername(savedName)
-        }
+        const fetchUserData = async () => {
+            if (!token) return;
 
-        const savedEmail = sessionStorage.getItem("userEmail")
-        if (savedEmail) {
-            setuserEmail(savedEmail)
-        }
+            try {
+                const response = await fetch("http://localhost:8000/user/get-user/", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Token ${token}`,
+                    },
+                });
 
-    }, [])
+                if (response.ok) {
+                    const body = await response.json();
+                    setUserName(body.username);
+                    setUserEmail(body.email);
+                    setAvatarUrl(generateAvatar(body.username)); // Generate avatar when user loads
+                } else {
+                    console.error("Failed to fetch user data.");
+                }
+            } catch (error) {
+                console.error("Error in fetchUserData:", error);
+            }
+        };
+
+        fetchUserData();
+    }, [token]);
 
     return (
-        <UserInfoContext.Provider value={{ userName, userEmail, setUserName, setUserEmail }}>
-            { children }
+        <UserInfoContext.Provider value={{ userName, userEmail, avatarUrl, setUserName, setUserEmail }}>
+            {children}
         </UserInfoContext.Provider>
-    )
+    );
+};
 
-}
-
-export { UserInfoContext }
-
-
+export { UserInfoContext };

@@ -6,7 +6,7 @@ import { UserInfoContext } from "../contexts/UserInfoContext";
 export default function ProfilePage() {
     const navigate = useNavigate();
     const { token, clearUserToken } = useContext(UserTokenContext);
-    const { setUserName, setUserEmail, userName, userEmail } = useContext(UserInfoContext);
+    const { setUserName, setUserEmail, userName, userEmail, avatarUrl } = useContext(UserInfoContext);
     
     const [formData, setFormData] = useState({
         username: "",
@@ -113,14 +113,28 @@ export default function ProfilePage() {
     }, [token]);
 
     return (
-        <div>
-            <div className="profileInfo">
+        <div className="profilePageMain">
                 <h2>Profile Page</h2>
+            <div className="profileInfo">
+                <div className="currentProfileInfo">      
+                {avatarUrl && <img src={avatarUrl} alt="User Avatar" style={{ width: "100px", borderRadius: "50%" }} />}
                 <p>Username: {userName}</p>
                 <p>Email: {userEmail}</p>
-            </div>
+                </div>
             <form onSubmit={handleSubmit} className="signInForm">
-                <label htmlFor="username">User Name:</label>
+                <label htmlFor="username"> <span style={{
+                    color: "red",
+                    textShadow: `
+                    -1px -1px 0 #000,
+                    1px -1px 0 #000,
+                    -1px 1px 0 #000,
+                    1px 1px 0 #000
+                        `,
+                     }}
+                >
+                Warning! Changing your username will change avatar on next log in!!!!!!
+                </span><br />
+                Username:</label>
                 <input 
                     type="text" 
                     id="username" 
@@ -169,6 +183,7 @@ export default function ProfilePage() {
                 >DELETE USER
                 </button>
             </form>
+            </div>
         </div>
     );
 }
