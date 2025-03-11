@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { UserTokenProvider } from './contexts/TokenContext';
-// import { UserProfileProvider } from './contexts/UserProfileContext';
+// import { UserInfoProvider } from './contexts/UserInfoContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './guards/ProtectedRoute';
 import TopAppBar from './components/TopAppBar';
@@ -19,11 +19,12 @@ function App() {
     const token = sessionStorage.getItem("userToken")
     //change the state dependent if we have a token
     setIsAuthenticated(!!token)
+    console.log({isAuthenticated})
   },[])
 
   return (
       <UserTokenProvider>
-        {/* <UserProfileProvider> */}
+        {/* <UserInfoProvider> */}
           <BrowserRouter>
             <TopAppBar isAuthenticated={ isAuthenticated } />
             <div className="container">
@@ -37,7 +38,7 @@ function App() {
               </Routes>
             </div>
           </BrowserRouter>
-        {/* </UserProfileProvider> */}
+        {/* </UserInfoProvider> */}
       </UserTokenProvider>
   );
 }

@@ -3,7 +3,8 @@ import { login } from "../api/api"
 import UserTokenContext from "../contexts/TokenContext"
 import { useNavigate } from "react-router-dom"
 
-export default function SignInPage() {       
+export default function SignInPage() {    
+    const  [isAuthenticated , setIsAuthenticated] = useState(false)
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -37,9 +38,10 @@ export default function SignInPage() {
             //console.log(response)
 
             if (typeof response === "string" && response.length > 30) {
-                setUserToken(response);
-            sessionStorage.setItem("userToken", response);
-            navigate("/signedinhome");
+                setUserToken(response)
+                setIsAuthenticated(true)
+                sessionStorage.setItem("userToken", response)
+                navigate("/signedinhome")
         } else { 
             setErrorMessage("SKIBIDI TOILET, YOU SUS! check username and password...make sure you have an account BOZO!")
         }

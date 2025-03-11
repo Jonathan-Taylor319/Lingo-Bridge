@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 // Use createContext function to create a context
+//default method i believe
 const UserTokenContext = createContext()
 
 // Create a provider to supply and manage the state
@@ -9,10 +10,11 @@ export const UserTokenProvider = ({ children }) => {
 
   // Function to update the user token    
   const setUserToken = (newToken) => {
-    setToken(newToken);
+    setToken(newToken)
+    sessionStorage.setItem("userToken", newToken)
   };
 
-  // Set token from session storage when app loads
+  // Set token from session storage when app loads/user logs in
   // they will have to re-log when closing tab/browser
   // if you wanted to persist change sessionStorage to localStorage
   useEffect(() => {
@@ -24,8 +26,9 @@ export const UserTokenProvider = ({ children }) => {
 
   // Function to remove the token (for logout, etc.)    
   const clearUserToken = () => {
-    setToken(null);
-  };
+    setToken(null)
+    sessionStorage.removeItem("userToken")
+  }
 
   // Derive auth status from token
   const isAuthenticated = token !== null;
@@ -35,7 +38,7 @@ export const UserTokenProvider = ({ children }) => {
     <UserTokenContext.Provider value={{ token, setUserToken, clearUserToken, isAuthenticated }}>
       {children}
     </UserTokenContext.Provider>
-  );
-};
+  )
+}
 
-export default UserTokenContext;
+export default UserTokenContext
