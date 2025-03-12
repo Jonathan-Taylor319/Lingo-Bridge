@@ -95,9 +95,16 @@ h2 {
   margin: auto;
 }
 
-.fancySearchButton {
-  padding: 15px 25px;
-  font-size: 24px;
+.buttonHolder {
+  display: flex;
+  justify-content: center;  /* Centers the buttons horizontally */
+  align-items: center;      /* Centers the buttons vertically */
+  margin-top: 
+}
+
+.fancyButton {
+  padding: 13px 22px;  /* Slightly reduced padding */
+  font-size: 22px;  /* 10% smaller font size */
   text-align: center;
   cursor: pointer;
   outline: none;
@@ -108,17 +115,34 @@ h2 {
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  width: 22%;  /* Reduced width by 10% */
+  margin: 0 0.75rem;  /* Added margin for space between buttons */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.fancySearchButton:hover {
+.fancyButton img {
+  width: 50%;  /* Adjusted image size to avoid squishing */
+  height: auto;  /* Keeps aspect ratio intact */
+  margin-bottom: 10px;  /* Adds space between image and text */
+}
+
+.fancyButton p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.fancyButton:hover {
   background: linear-gradient(135deg, #3e8e41, #1e88e5);
 }
 
-.fancySearchButton:active {
+.fancyButton:active {
   background: linear-gradient(135deg, #2a7f62, #2196f3);
   box-shadow: rgba(0, 0, 0, 0.3);
   transform: translateY(4px);
 }
+
 
 .signUpForm, .signInForm {
   margin-left: auto;
@@ -179,6 +203,44 @@ h2 {
 
 .profilePageMain h2 {
   margin-bottom: 5px; /* Reduce this value as needed */
+}
+
+/* Style for the first image */
+.image-left {
+  position: absolute;
+  left: -30vw; /* Pushes the image 30% of the viewport width to the left */
+  top: 65%;  /* Vertically centers the image */
+  transform: translateY(-50%) rotate(-15deg) scale(0.75);
+  transition: transform 0.3s ease;
+  width: 30vw;  /* Makes the image scale with the window */
+}
+
+/* Style for the second image */
+.image-right {
+  position: absolute;
+  right: -30vw; /* Pushes the second image 30% of the viewport width to the right */
+  top: 65%;  /* Vertically centers the image */
+  transform: translateY(-50%) rotate(15deg) scale(0.75);
+  transition: transform 0.3s ease;
+  width: 30vw;  /* Makes the image scale with the window */
+}
+
+/* Style for the center image */
+.image-center {
+  position: absolute;
+  top: 45%;  /* Vertically centers the image */
+  left: 50%;  /* Horizontally centers the image */
+  transform: translateX(-50%) translateY(-50%) rotate(0deg) scale(0.65); /* Centers both horizontally and vertically */
+  transition: transform 0.3s ease;
+  width: 30vw;  /* Makes the image scale with the window */
+}
+
+.userActivity {
+  display: flex;
+  justify-content: center;   /* Centers horizontally */
+  align-items: center;       /* Centers vertically */
+  height: 50vh;             /* Makes the div take full viewport height */
+  text-align: center;        /* Ensures text inside is also centered */
 }
 
 @media (max-width: 768px) {

@@ -39,8 +39,8 @@ export default function SignInPage() {
 
             if (typeof response === "string" && response.length > 30) {
                 setUserToken(response)
-                setIsAuthenticated(true)
                 sessionStorage.setItem("userToken", response)
+                setIsAuthenticated(true)
                 navigate("/signedinhome")
         } else { 
             setErrorMessage("SKIBIDI TOILET, YOU SUS! check username and password...make sure you have an account BOZO!")
