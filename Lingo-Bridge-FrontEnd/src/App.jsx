@@ -13,13 +13,7 @@ import SignedInHome from './Pages/SignedInHome';
 import ProfilePage from './Pages/ProfilePage';
 
 function App() {
-  const [ isAuthenticated, setIsAuthenticated ] = useState(false)
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("userToken")
-    //change the state dependent if we have a token
-    setIsAuthenticated(!!token)
-  },[])
+  const [ isAuthenticated ] = useState(false)
 
   return (
       <UserTokenProvider>
