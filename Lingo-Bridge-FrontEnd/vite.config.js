@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],  // Enable the React plugin
   server: {
     proxy: {
-      // Proxy API requests starting with "/api" to the Urban Dictionary API
-      '/api': 'https://unofficialurbandictionaryapi.com',
+    //   // Proxy API requests starting with "/api" to the Urban Dictionary API
+    //   '/api': 'https://unofficialurbandictionaryapi.com',
     },
   },
 });

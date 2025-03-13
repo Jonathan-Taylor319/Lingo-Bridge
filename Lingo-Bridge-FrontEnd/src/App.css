@@ -143,7 +143,6 @@ h2 {
   transform: translateY(4px);
 }
 
-
 .signUpForm, .signInForm {
   margin-left: auto;
   margin-right: auto;
@@ -184,7 +183,7 @@ h2 {
   font-size: 24px;
   font-weight: bold;
   margin: 20px auto;
-  width: 90%; /* Wider box */
+  width: 150%; /* Wider box */
   max-width: 1000px; /* Increase max-width */
   min-width: 400px; /* Prevent it from shrinking too much */
   display: flex;
@@ -193,12 +192,14 @@ h2 {
 }
 
 .profilePageMain {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
   padding: 10px;
   box-sizing: border-box;
+  width: 100%; /* Full width */
+  height: 100vh; /* Full viewport height */
 }
 
 .profilePageMain h2 {
@@ -252,7 +253,6 @@ h2 {
     padding: 10px;
   }
 }
-
 
 input {
   width: 75%; 

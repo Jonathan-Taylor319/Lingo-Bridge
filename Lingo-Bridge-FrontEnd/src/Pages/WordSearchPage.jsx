@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
+import FancyButtons from '../components/FancyButtons';
 
 export default function WordSearching() {
-  const [term, setTerm] = useState('');
-  const [results, setResults] = useState([]);
+  const [term, setTerm] = useState('')
+  const [results, setResults] = useState([])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-        const response = await fetch(`api/search?term=${term}&strict=false&matchCase=false&limit=none&page=1&multiPage=false`);
-        const data = await response.json();
-        console.log('API Data:', data); // Check the data in the console
-        setResults(data.data.slice(0, 3)); // Limit results to 3
+      const response = await fetch(`https://api.urbandictionary.com/v0/define?term=${term}`)
+      const data = await response.json()
+      console.log('API Data:', data)
+
+      if (data.list && data.list.length > 0) {
+        setResults(data.list.slice(0, 3))
+      } else {
+        setResults([])
+      }
     } catch (error) {
-        console.error('Error fetching data:', error);
+      console.error('Error fetching data:', error)
     }
-};
+  };
 
   return (
+    <>
+    < FancyButtons />
     <div>
       <h2>Search for a word</h2>
       <form onSubmit={handleSubmit}>
@@ -25,7 +33,7 @@ export default function WordSearching() {
           value={term}
           onChange={(e) => setTerm(e.target.value)}
           placeholder="Enter a word"
-        />
+          />
         <button type="submit">Search</button>
       </form>
 
@@ -34,10 +42,8 @@ export default function WordSearching() {
           results.map((result, index) => (
             <div key={index} className="result">
               <h3>{result.word}</h3>
-              <p><strong>Meaning:</strong> {result.meaning}</p>
+              <p><strong>Meaning:</strong> {result.definition}</p>
               <p><strong>Example:</strong> {result.example}</p>
-              <p><strong>Contributor:</strong> {result.contributor}</p>
-              <p><strong>Date:</strong> {result.date}</p>
             </div>
           ))
         ) : (
@@ -45,5 +51,6 @@ export default function WordSearching() {
         )}
       </div>
     </div>
+    </>
   );
 }

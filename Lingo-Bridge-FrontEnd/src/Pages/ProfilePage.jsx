@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";  // Removed `link`
+import { useNavigate } from "react-router-dom";
 import UserTokenContext from "../contexts/TokenContext";
 import { UserInfoContext } from "../contexts/UserInfoContext";
+import FancyButtons from "../components/FancyButtons";
 
 export default function ProfilePage() {
     const navigate = useNavigate();
@@ -27,8 +28,8 @@ export default function ProfilePage() {
 
         setIsDeleting(true);
 
-        // Perform the deletion after redirecting
-        navigate('/'); // Redirect to home immediately
+     
+        navigate('/');
 
         try {
             const response = await fetch("http://localhost:8000/user/delete-user/", {
@@ -37,15 +38,15 @@ export default function ProfilePage() {
                     "Authorization": `Token ${token}`,
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ username: userName }), // Correct variable name
+                body: JSON.stringify({ username: userName }),
             });
 
             if (response.ok) {
                 console.log("Account deleted successfully.");
                 setUserName("");
                 setUserEmail("");
-                clearUserToken(); // Clear token to log user out
-                sessionStorage.removeItem("userToken"); // Clear session storage
+                clearUserToken(); 
+                sessionStorage.removeItem("userToken"); 
                 alert("Your account has been deleted.");
             } else {
                 console.log("Failed to delete account.");
@@ -113,6 +114,8 @@ export default function ProfilePage() {
     }, [token]);
 
     return (
+        <>
+        < FancyButtons />
         <div className="profilePageMain">
                 <h2>Profile Page</h2>
             <div className="profileInfo">
@@ -129,8 +132,8 @@ export default function ProfilePage() {
                     1px -1px 0 #000,
                     -1px 1px 0 #000,
                     1px 1px 0 #000
-                        `,
-                     }}
+                    `,
+                }}
                 >
                 Warning! Changing your username will change avatar on next log in!!!!!!
                 </span><br />
@@ -141,7 +144,7 @@ export default function ProfilePage() {
                     name="username" 
                     value={formData.username}
                     onChange={handleChange}
-                />
+                    />
                 <label htmlFor="email">Email:</label>
                 <input 
                     type="email" 
@@ -149,7 +152,7 @@ export default function ProfilePage() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                />
+                    />
                 <label htmlFor="password">Password:</label>
                 <input 
                     type="password" 
@@ -157,7 +160,7 @@ export default function ProfilePage() {
                     name="password" 
                     value={formData.password} 
                     onChange={handleChange} 
-                />         
+                    />         
                 <button type="submit" className='infoFormButton' style={{ marginTop: "10px", alignSelf: "center" }}>
                     {isLoading ? "Updating User Info..." : "Update Info"}
                 </button>
@@ -179,11 +182,12 @@ export default function ProfilePage() {
                         fontWeight: "bold",
                         fontSize: "14px",
                         cursor: "pointer",
-                     }}
-                >DELETE USER
+                    }}
+                    >DELETE USER
                 </button>
             </form>
             </div>
         </div>
+    </>
     );
 }

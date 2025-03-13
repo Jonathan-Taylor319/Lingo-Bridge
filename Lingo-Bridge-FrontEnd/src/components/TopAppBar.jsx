@@ -5,25 +5,14 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import MenuIcon from '@mui/icons-material/Menu';
-import Menu from '@mui/material/Menu'; 
-import MenuItem from '@mui/material/MenuItem';
 import UserTokenContext from '../contexts/TokenContext';
 import { UserInfoContext } from '../contexts/UserInfoContext';
 
 export default function TopAppBar() {
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState(null);
+ 
   const { userName, avatarUrl } = useContext(UserInfoContext);
   const { isAuthenticated, clearUserToken } = useContext(UserTokenContext);
-
-  const handleMenuOpen = (e) => {
-    setAnchorEl(e.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
 
   const handleLogout = () => {
     clearUserToken();
@@ -36,37 +25,14 @@ export default function TopAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar 
-        position="absolute"
+        position="fixed"
         sx={{ 
-          background: "rgba(0, 0, 0, 0.7)", 
-          minHeight: { xs: '50px', sm: '60px' }, 
+          background: "#2a7f62",
+          height: "55px" ,
           backdropFilter: "blur(10px)" 
         }}
       >
         <Toolbar>
-          <MenuIcon onClick={handleMenuOpen} sx={{ cursor: "pointer", color: "white" }} />
-
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-            PaperProps={{
-              sx: { backgroundColor: "#222", color: "white", borderRadius: 2 }
-            }}
-          >
-            <MenuItem onClick={handleMenuClose} component={Link} to='/about'>About</MenuItem>
-            <MenuItem onClick={handleMenuClose}>
-              <Link to={isAuthenticated ? '/signedinhome' : '/'} style={{ color: "white", textDecoration: 'none' }}>
-                Home
-              </Link>
-            </MenuItem>
-            {isAuthenticated && (
-              <MenuItem onClick={handleMenuClose} component={Link} to='/profilepage'>
-                Profile
-              </MenuItem>
-            )}
-          </Menu>
-
         {isAuthenticated && (
           <>
             {/* Use avatarUrl if available */}
@@ -103,7 +69,7 @@ export default function TopAppBar() {
             </Button>
           )}
           {isAuthenticated && (
-            <Button onClick={handleLogout} color="inherit">
+            <Button onClick={ handleLogout } color="inherit">
               Sign Out
             </Button>
           )}

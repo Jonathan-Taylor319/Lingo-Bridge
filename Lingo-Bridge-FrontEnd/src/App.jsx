@@ -11,6 +11,7 @@ import SignUpPage from './Pages/SignUpPage'
 import SignInPage from './Pages/SignInPage';
 import SignedInHome from './Pages/SignedInHome';
 import ProfilePage from './Pages/ProfilePage';
+import WordSearchPage from './Pages/WordSearchPage';
 
 function App() {
   const [ isAuthenticated ] = useState(false)
@@ -26,8 +27,9 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/sign-up" element={<SignUpPage />} />
                 <Route path="/sign-in" element={<SignInPage />} />
-                <Route path="/signedinhome" element={ <ProtectedRoute isAuthenticated={ isAuthenticated }> <SignedInHome /></ProtectedRoute> } />
-                <Route path="/profilepage" element={ <ProtectedRoute isAuthenticated={ isAuthenticated }> <ProfilePage /></ProtectedRoute> } />
+                <Route path="/signedinhome" element={ <ProtectedRoute isAuthenticated={ isAuthenticated }> <SignedInHome /> </ProtectedRoute> } />
+                <Route path="/profile" element={ <ProtectedRoute isAuthenticated={ isAuthenticated }> < ProfilePage /> </ProtectedRoute> } />
+                <Route path="/wordsearch" element={ <ProtectedRoute isAuthenticated={ isAuthenticated }> < WordSearchPage /> </ProtectedRoute> } />
               </Routes>
             </div>
           </BrowserRouter>

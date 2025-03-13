@@ -1,26 +1,26 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import UserTokenContext from "./TokenContext"; // Import UserTokenContext to get isAuthenticated
+import UserTokenContext from "./TokenContext"; 
 
 const UserInfoContext = createContext();
 
 export const UserInfoProvider = ({ children }) => {
-  const { isAuthenticated } = useContext(UserTokenContext); // Access isAuthenticated from UserTokenContext
+  const { isAuthenticated } = useContext(UserTokenContext); 
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState(null); // Store avatar URL
+  const [avatarUrl, setAvatarUrl] = useState(null); 
 
   const generateAvatar = (username) => {
     return `https://api.dicebear.com/9.x/bottts/svg?seed=${username}`;
   };
 
-  // Clear user info when isAuthenticated changes to false
+  
   useEffect(() => {
     if (!isAuthenticated) {
-      setUserName(""); // Clear userName
-      setUserEmail(""); // Clear userEmail
-      setAvatarUrl(null); // Clear avatar URL
+      setUserName(""); 
+      setUserEmail(""); 
+      setAvatarUrl(null); 
     }
-  }, [isAuthenticated]); // Dependency array listens for changes in isAuthenticated
+  }, [isAuthenticated]); 
 
   useEffect(() => {
     if (isAuthenticated) {

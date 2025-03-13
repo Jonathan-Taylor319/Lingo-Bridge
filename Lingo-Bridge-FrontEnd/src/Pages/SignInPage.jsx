@@ -1,22 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import UserTokenContext from "../contexts/TokenContext";
-import SignedInHome from "./SignedInHome";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInPage() {
     const [formData, setFormData] = useState({ username: "", password: "" });
-    const { setUserToken, token } = useContext(UserTokenContext);
+    const { setUserToken } = useContext(UserTokenContext);
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState("sign-in"); // Controls rendering
+    const navigate = useNavigate();
 
     // Check if token exists on page load or refresh
     useEffect(() => {
         const savedToken = sessionStorage.getItem("userToken");
         if (savedToken) {
-            setUserToken(savedToken); // Restore token into context
-            setCurrentPage("signed-in-home"); // Render signed-in home if a token exists
+            setUserToken(savedToken);
+            navigate("/signedinhome");
         }
-    }, [setUserToken]);
+    }, [setUserToken, navigate]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,12 +36,11 @@ export default function SignInPage() {
 
             if (response.ok) {
                 const data = await response.json();
-                setUserToken(data.token); // Set token in context
-                sessionStorage.setItem("userToken", data.token); // Store token in sessionStorage
-                setCurrentPage("signed-in-home"); // Change page state to "signed-in-home"
+                setUserToken(data.token); 
+                sessionStorage.setItem("userToken", data.token);
+                navigate("/signedinhome");
             } else {
-                const errorData = await response.json();
-                setErrorMessage(errorData.detail || "Something went wrong.");
+                setErrorMessage("Real SUS 🕵️‍♂️. Check username and password.");
             }
         } catch (error) {
             console.error("ERROR:", error);
@@ -53,54 +52,31 @@ export default function SignInPage() {
 
     return (
         <>
-            {currentPage === "sign-in" ? (
-                <>
-                    <h2 sx={{ self: "center" }}>No Cap 🧢 the Hype is real! Sign In:</h2>
-                    <form onSubmit={handleSubmit} className="signInForm">
-                        <label htmlFor="username">User Name:</label>
-                        <input 
-                            type="text" 
-                            id="username" 
-                            name="username" 
-                            value={formData.username}
-                            onChange={handleChange}
-                        />
-                        <label htmlFor="password">Password</label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                        />     
-                        <button type="submit" className="infoFormButton" style={{ marginTop: "10px", alignSelf: "center" }}>
-                            {isLoading ? "Signing in..." : "Sign in"}
-                        </button>
-                    </form>
-                    
-                    {errorMessage && (
-                        <div
-                            style={{
-                                background: 'linear-gradient(135deg, #2a7f62, #2196f3)',
-                                color: 'white',
-                                border: '2px solid black',
-                                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
-                                padding: '20px',
-                                borderRadius: '8px',
-                                maxWidth: "500px",
-                                margin: '20px auto',
-                                textAlign: 'center',
-                                fontSize: '16px',
-                                whiteSpace: 'pre-line'
-                            }}
-                        >
-                            {errorMessage}
-                        </div>
-                    )}
-                </>
-            ) : (
-                <SignedInHome /> // Render the signed-in home page instead of navigating
-            )}
+            <h2>No Cap 🧢 the Hype is real! Sign In:</h2>
+            <form onSubmit={handleSubmit} className="signInForm">
+                <label htmlFor="username">User Name:</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    value={formData.username}
+                    onChange={handleChange}
+                />
+                <label htmlFor="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                />     
+                <button type="submit" className="infoFormButton" style={{ marginTop: "10px", alignSelf: "center" }}>
+                    {isLoading ? "Signing in..." : "Sign in"}
+                </button>
+            </form>
+            
+            {/* Display error message if login fails */}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
         </>
     );
 }
