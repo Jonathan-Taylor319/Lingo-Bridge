@@ -1,12 +1,14 @@
 import React from 'react';
 import CodePlatoonLogo from '../assets/CodePlatoonLogo.png';
 import Family from '../assets/family.png';
+import SignInUpButtons from '../components/SignInUpButtons';
 
 export default function About() {
     return (
         <>
+        < SignInUpButtons />
+        <div className="about-div">
             <h2>About Lingo Bridge</h2>
-        <div className="aboutdiv">
 
             <h4>What is Lingo Bridge?</h4>
             <p>

@@ -1,40 +1,16 @@
 body {
   font-family: "Public Sans", sans-serif;
-  background: linear-gradient(135deg, #2a7f62, #2196f3), url("/myLogo.png");
-  background-size: cover, auto;
-  background-position: center, top;
-  background-repeat: no-repeat, no-repeat;
-  background-attachment: fixed;
+  background: 
+    linear-gradient(135deg, rgba(42, 127, 98, 0.8), rgba(33, 150, 243, 0.8)), 
+    url("/myLogo.png") center/contain no-repeat; 
+  background-size: cover, 300px 250px; 
+  background-position: center, center;
+  background-repeat: no-repeat, repeat; 
+  background-attachment: fixed; 
   position: relative;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   display: flex;
-  flex-direction: column; 
-}
-
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: -1; /* Ensure this stays behind everything */
-}
-
-body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("/myLogo.png") center/contain no-repeat;
-  background-size: 300px 250px; /* Adjust logo size */
-  background-repeat: repeat; /* Prevent repeating the logo */
-  opacity: 0.5; /* Adjust opacity to make it more visible */
-  z-index: 0; /* Ensure it's behind other content */
-  pointer-events: none; /* Disable pointer events */
+  flex-direction: column;
 }
 
 h2 {
@@ -48,38 +24,77 @@ h2 {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  margin: 20px auto;
-  max-width: 90%;
+  margin: 0;
 }
 
-.container {
-  display: flex;
-  margin-top: 60px;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: flex-start; 
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1; /* Ensure container stays above the pseudo-elements */
-  flex-grow: 1;
+h4, p {
+  text-align: center; /* Aligns text to the center */
 }
 
-.aboutdiv {
-  align-self: center;
-  background: linear-gradient(135deg, #2a7f62, #2196f3);
-  color: white;
+button {
+  background: #287A8D;
   border: 2px solid black;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 20px auto;
-  max-width: 90%;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+button:active {
+  box-shadow: rgba(0, 0, 0, 0.3);
+  transform: translateY(4px);
+}
+
+.sign-up-in-button-div {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  gap: 5px;               
+  width: 100%;            
+  flex-wrap: wrap;
+  padding-top: 65px;
+  padding-bottom: 25px;       
+}
+
+.home-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  gap: 20px; 
+}
+
+.home-image-container {
+  padding-top: 65px;
+  display: flex;
+  justify-content: space-between; 
+  gap: 5vw; 
+  width: 80%; 
+  align-items: center;
+}
+
+.image-left, .image-right {
+  width: 45%;
+  transform: rotate(15deg);
+  transition: transform 0.3s ease;
+}
+
+.image-right {
+  transform: rotate(-15deg) scale(95%);
+}
+
+.about-div{
+  background-color: #287A8D;
+  border: 2px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding-top: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: auto;
+  width: 75%;
 }
 
 .CPLogo {
@@ -93,82 +108,6 @@ h2 {
   height: 200px;
   display: block;
   margin: auto;
-}
-
-.buttonHolder {
-  display: flex;
-  justify-content: center;  /* Centers the buttons horizontally */
-  align-items: center;      /* Centers the buttons vertically */
-  margin-top: 
-}
-
-.fancyButton {
-  padding: 13px 22px;  /* Slightly reduced padding */
-  font-size: 22px;  /* 10% smaller font size */
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background: linear-gradient(135deg, #2a7f62, #2196f3);
-  border: 2px solid black;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  width: 22%;  /* Reduced width by 10% */
-  margin: 0 0.75rem;  /* Added margin for space between buttons */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.fancyButton img {
-  width: 50%;  /* Adjusted image size to avoid squishing */
-  height: auto;  /* Keeps aspect ratio intact */
-  margin-bottom: 10px;  /* Adds space between image and text */
-}
-
-.fancyButton p {
-  margin: 0;
-  font-size: 16px;
-}
-
-.fancyButton:hover {
-  background: linear-gradient(135deg, #3e8e41, #1e88e5);
-}
-
-.fancyButton:active {
-  background: linear-gradient(135deg, #2a7f62, #2196f3);
-  box-shadow: rgba(0, 0, 0, 0.3);
-  transform: translateY(4px);
-}
-
-.signUpForm, .signInForm {
-  margin-left: auto;
-  margin-right: auto;
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  z-index: 10;
-}
-
-.signUpBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centers children horizontally */
-  justify-content: center; /* Centers children vertically */
-  height: 50vh; /* Full viewport height to center the content */
-}
-
-.signUpAlert {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  border-radius: 25px;
-  text-align: center; /* Ensures text inside is centered */
-  color: white; /* Makes text readable on dark background */
-  width: 100%;
 }
 
 .profileInfo {
@@ -202,70 +141,284 @@ h2 {
   height: 100vh; /* Full viewport height */
 }
 
-.profilePageMain h2 {
-  margin-bottom: 5px; /* Reduce this value as needed */
-}
-
-/* Style for the first image */
-.image-left {
-  position: absolute;
-  left: -30vw; /* Pushes the image 30% of the viewport width to the left */
-  top: 65%;  /* Vertically centers the image */
-  transform: translateY(-50%) rotate(-15deg) scale(0.75);
-  transition: transform 0.3s ease;
-  width: 30vw;  /* Makes the image scale with the window */
-}
-
-/* Style for the second image */
-.image-right {
-  position: absolute;
-  right: -30vw; /* Pushes the second image 30% of the viewport width to the right */
-  top: 65%;  /* Vertically centers the image */
-  transform: translateY(-50%) rotate(15deg) scale(0.75);
-  transition: transform 0.3s ease;
-  width: 30vw;  /* Makes the image scale with the window */
-}
-
-/* Style for the center image */
-.image-center {
-  position: absolute;
-  top: 45%;  /* Vertically centers the image */
-  left: 50%;  /* Horizontally centers the image */
-  transform: translateX(-50%) translateY(-50%) rotate(0deg) scale(0.65); /* Centers both horizontally and vertically */
-  transition: transform 0.3s ease;
-  width: 30vw;  /* Makes the image scale with the window */
-}
-
-.userActivity {
+form {
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+  padding: 30px;
+  border: 2px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+  margin-top: 30px;
   display: flex;
-  justify-content: center;   /* Centers horizontally */
-  align-items: center;       /* Centers vertically */
-  height: 50vh;             /* Makes the div take full viewport height */
-  text-align: center;        /* Ensures text inside is also centered */
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 20%;
+}
+
+form label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+form input {
+  padding: 10px;
+  border: 2px solid #287A8D;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+form button {
+  background-color: #287A8D;
+  color: white;
+  padding: 12px;
+  border: 2px solid #287A8D;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+form button:hover {
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
+
+form button:active {
+  box-shadow: rgba(0, 0, 0, 0.3);
+  transform: translateY(4px);
+}
+
+.error-message {
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+  border: 2px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  color: #d32f2f;
+  font-size: 22px;
+  height: 50px;
+  text-align:center;
+  justify-content: center;
+  margin-top: 5px;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.fancy-main-div {
+  display: flex;
+  flex-direction: column;  /* Stack items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center;     /* Center content horizontally */
+  gap: 20px;               /* Space between h2 and buttons */
+  padding-top: 65px;
+  padding-bottom: 28px;
+}
+
+.fancy-button-holder {
+  display: flex;                /* Enable flexbox */
+  justify-content: center;      /* Center the buttons horizontally */
+  gap: 10px;                    /* Space between buttons */
+  flex-wrap: wrap;              /* Allow buttons to wrap if necessary */
+  width: 100%;
+  max-width: 1000px;            /* Optional: limit the width */
+}
+
+.fancy-button {
+  display: flex;                /* Enable flexbox inside button */
+  align-items: center;          /* Vertically center content */
+  justify-content: center;      /* Horizontally center content */
+  width: 200px;                 /* Set width of the button */
+  height: 60px;                 /* Set height of the button */
+  border-radius: 10px;          /* Rounded corners */
+  background-color: #287A8D;    /* Background color */
+  color: white;                 /* Text color */
+  font-size: 16px;              /* Font size */
+  overflow: hidden;             /* Prevent content from overflowing */
+  padding: 5px;                 /* Optional padding */
+  flex-shrink: 0;               /* Prevent shrinking */
+}
+
+.fancy-button img {
+  max-width: 50%;               /* Ensure the image takes up no more than 50% */
+  max-height: 80%;              /* Ensure image doesn't stretch */
+  object-fit: contain;          /* Maintain aspect ratio */
+  margin-right: 10px;           /* Add space between image and text */
+}
+
+.fancy-button p {
+  margin: 0;                    /* Remove default margin */
+}
+
+.word-search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.word-search-container h2 {
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  font-size: 24px;
+  max-width: 100%;
+  flex-shrink: 0;  /* Prevents shrinking */
+}
+.word-search-results-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.result {
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+  border: 2px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  width: 80%;
+  margin: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.result h3 {
+  font-size: 20px;
+}
+
+.result p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.random-word-of-the-day-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+  border: 2px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.random-word-of-the-day-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1B3A57; /* Midnight Blue from your theme */
+  margin-bottom: 15px;
+}
+
+.random-word-of-the-day-container .result {
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+  border: 2px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.random-word-of-the-day-container h3 {
+  font-size: 22px;
+  color: #F15A29; /* Electric Orange for emphasis */
+  margin-bottom: 10px;
+}
+
+.random-word-of-the-day-container p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.random-word-of-the-day-container p strong {
+  color: #1B3A57; /* Midnight Blue for strong emphasis */
+}
+
+.profilePageMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items horizontally */
+  justify-content: flex-start; /* Aligns items at the top */
+  padding: 20px;
+}
+
+.profileInfo {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Controls spacing between buttons and profile info */
+}
+
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signInForm label, .signInForm input {
+  margin: 0; /* Removes any margin applied by default */
+}
+
+button {
+  margin-top: 10px; /* Adjust spacing for buttons */
+}
+
+.FancyButtons {
+  margin-bottom: 0; /* If FancyButtons has extra margin, remove it */
+}
+
+.deleteButton {
+  background: linear-gradient(to bottom, #ff4d4d, red);
+  display: block;
+  height: 100px;
+  width: 100px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  align-self: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
+  transform: translateY(10px);
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.deleteButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.deleteButton:active {
+  transform: translateY(5px);
+}
+
+.warningText {
+  color: red;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 @media (max-width: 768px) {
-  .signUpForm, .signInForm {
-    width: 65%;
-    max-width: 350px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
+  .image-left, .image-right {
+    width: 80%; 
+    transform: rotate(0deg); 
   }
 }
-
-input {
-  width: 75%; 
-  height: 20px; 
-  font-size: 14px;
-  font-family: 'Oswald'; 
-  border: 1px solid black;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #2a7f62, #2196f3);
-  color: black; /* Set the font color to black */
-  z-index: 2; /* Ensure inputs are on top */
-  padding: 5px; /* Add some padding for better text spacing */
-  transform: scale(1.2); /* Scale the text to make it bigger without changing the input size */
-  transform-origin: left center; /* Ensure scaling happens from the left side */
-}
-

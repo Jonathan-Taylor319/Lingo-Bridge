@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { signup } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import SignInUpButtons from "../components/SignInUpButtons";
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -71,6 +72,8 @@ export default function SignUpPage() {
   }
   
   return (
+    <>
+    < SignInUpButtons />
     <div>
       {message && (
         <div
@@ -122,5 +125,6 @@ export default function SignUpPage() {
           {isSubmitting ? "Signing Up...." : "Sign Up"}</button>
       </form>
     </div>
+    </>
   );
 }

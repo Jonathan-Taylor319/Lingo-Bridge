@@ -27,7 +27,7 @@ export default function TopAppBar() {
       <AppBar 
         position="fixed"
         sx={{ 
-          background: "#2a7f62",
+          background: "#287A8D",
           height: "55px" ,
           backdropFilter: "blur(10px)" 
         }}
@@ -39,11 +39,11 @@ export default function TopAppBar() {
             <img 
               src={avatarUrl} 
               alt="User Avatar" 
-              style={{ width: 40, height: 40, borderRadius: '50%', marginRight: '10px', paddingLeft: '25px'}} 
+              style={{ width: "60px", height: 100, borderRadius: '50%', marginRight: '10px',marginBottom:"10px", paddingLeft: '25px'}} 
             />
           </>
         )}
-            <Typography variant="subtitle1" sx={{ color: 'white', paddingLeft:'10px'}}>
+            <Typography variant="subtitle1" sx={{ color: 'white', paddingLeft:'10px', marginBottom:"10px", fontSize:"24"}}>
               {userName}
             </Typography>
 
@@ -57,19 +57,8 @@ export default function TopAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 1 }} />
-
-          {!isAuthenticated && location.pathname !== "/sign-in" && (
-            <Button color="inherit" sx={{ mr: 1 }} component={Link} to="/sign-in">
-              Sign In
-            </Button>
-          )}
-          {!isAuthenticated && location.pathname !== "/sign-up" && (
-            <Button color="inherit" component={Link} to="/sign-up">
-              Sign Up
-            </Button>
-          )}
           {isAuthenticated && (
-            <Button onClick={ handleLogout } color="inherit">
+            <Button onClick={ handleLogout } style={{background:"#1E6D89", border:"2px, solid, black", color:"white", marginBottom:"10px"}}>
               Sign Out
             </Button>
           )}

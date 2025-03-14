@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { UserTokenProvider } from './contexts/TokenContext';
 import { UserInfoProvider } from './contexts/UserInfoContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';

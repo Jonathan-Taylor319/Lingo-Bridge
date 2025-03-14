@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import UserTokenContext from "../contexts/TokenContext";
 import { useNavigate } from "react-router-dom";
+import SignInUpButtons from "../components/SignInUpButtons";
 
 export default function SignInPage() {
     const [formData, setFormData] = useState({ username: "", password: "" });
@@ -52,7 +53,9 @@ export default function SignInPage() {
 
     return (
         <>
+            < SignInUpButtons />
             <h2>No Cap 🧢 the Hype is real! Sign In:</h2>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
             <form onSubmit={handleSubmit} className="signInForm">
                 <label htmlFor="username">User Name:</label>
                 <input 
@@ -74,9 +77,6 @@ export default function SignInPage() {
                     {isLoading ? "Signing in..." : "Sign in"}
                 </button>
             </form>
-            
-            {/* Display error message if login fails */}
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
         </>
     );
 }
