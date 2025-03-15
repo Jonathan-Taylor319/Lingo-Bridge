@@ -22,7 +22,7 @@ export async function signup(context) {
         },
         body: JSON.stringify(context)
     }
-    const body = await basicFetch("http://localhost:8000/user/signup/", payload)
+    const body = await basicFetch("http://3.138.34.24:8000/user/signup/", payload)
     return body
 }
 
@@ -35,7 +35,7 @@ export async function login(context) {
         },
         body: JSON.stringify(context)
     }
-    const body = await basicFetch("http://localhost:8000/user/get-token/", payload)
+    const body = await basicFetch("http://3.138.34.24:8000/user/get-token/", payload)
     return body.token
 }
 
@@ -47,7 +47,7 @@ export async function getUser(token) {
             "Authorization": `Token ${token}`
         },
     }
-    const body = await basicFetch("http://localhost:8000/user/get-user/", payload)
+    const body = await basicFetch("http://3.138.34.24:8000/user/get-user/", payload)
     return body.result
 }
 
@@ -60,6 +60,6 @@ export async function updateUser(token, context) {
         },
         body: JSON.stringify(context)
     }
-    const body = await basicFetch("http://localhost:8000/user/update-user/", payload)
+    const body = await basicFetch("http://3.138.34.24:8000/user/update-user/", payload)
     return body.result
 }

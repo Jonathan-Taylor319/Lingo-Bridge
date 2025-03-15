@@ -8,7 +8,7 @@ const GenZSlang = () => {
     useEffect(() => {
         const fetchSlang = async () => {
             try {
-                const response = await fetch("http://localhost:8000/api/slang/");
+                const response = await fetch("http://3.138.34.24:8000/api/slang/");
                 if (!response.ok) throw new Error("Failed to fetch slang words");
 
                 const data = await response.json();

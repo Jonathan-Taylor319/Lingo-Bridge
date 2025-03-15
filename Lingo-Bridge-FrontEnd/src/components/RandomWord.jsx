@@ -21,7 +21,7 @@ export default function RandomWord() {
 
     const fetchWordofTheDay = async () => {
         try {
-            const response = await fetch("http://localhost:8000/api/slang/random/");
+            const response = await fetch("http://3.138.34.24:8000/api/slang/random/");
             const data = await response.json();
             console.log(data);
 

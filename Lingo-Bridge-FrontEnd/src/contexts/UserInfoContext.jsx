@@ -27,7 +27,7 @@ export const UserInfoProvider = ({ children }) => {
       const fetchUserData = async () => {
         // Fetch user data when authenticated
         try {
-          const response = await fetch("http://localhost:8000/user/get-user/", {
+          const response = await fetch("http://3.138.34.24:8000/user/get-user/", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

@@ -22,7 +22,7 @@ export async function signup(context) {
         },
         body: JSON.stringify(context)
     };
-    const { body, status, statusText } = await basicFetch("http://localhost:8000/user/signup/", payload);
+    const { body, status, statusText } = await basicFetch("http://3.138.34.24:8000/user/signup/", payload);
     
     // Return the full response including body and status
     return { body, status, statusText };
@@ -36,7 +36,7 @@ export async function login(context) {
         },
         body: JSON.stringify(context)
     };
-    const { body, status, statusText } = await basicFetch("http://localhost:8000/user/get-token/", payload);
+    const { body, status, statusText } = await basicFetch("http://3.138.34.24:8000/user/get-token/", payload);
     
     // Return the token along with status info
     return { token: body.token, status, statusText };

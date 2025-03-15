@@ -88,7 +88,7 @@ export default function ProfilePage() {
         if (token) {
             const fetchUserData = async () => {
                 try {
-                    const response = await fetch("http://localhost:8000/user/get-user/", {
+                    const response = await fetch("http://3.138.34.24:8000/user/get-user/", {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
