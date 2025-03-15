@@ -8,7 +8,7 @@ export default function About() {
         <>
         < SignInUpButtons />
         <div className="about-div">
-            <h2>About Lingo Bridge</h2>
+            <h2>-- About Lingo Bridge -- </h2>
 
             <h4>What is Lingo Bridge?</h4>
             <p>

@@ -4,7 +4,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import UserTokenContext from '../contexts/TokenContext';
 import { UserInfoContext } from '../contexts/UserInfoContext';
 import FancyButtons from './FunctionButtons';
@@ -16,6 +15,11 @@ export default function TopAppBar() {
   const { userName, avatarUrl } = useContext(UserInfoContext);
   const { isAuthenticated, clearUserToken } = useContext(UserTokenContext);
 
+  const handleLogout = () => {
+    clearUserToken();
+    sessionStorage.removeItem("userToken");
+    navigate("/");
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -29,6 +33,9 @@ export default function TopAppBar() {
         >
         <Toolbar>
         {isAuthenticated && <button style={{marginBottom:"20px"}}onClick={() => navigate("/about")}>About</button>}
+        {isAuthenticated && <button onClick={ handleLogout } style={{background:"#1E6D89", border:"2px, solid, black", color:"white", marginBottom:"20px", marginLeft:"2px"}}>
+           Sign Out
+          </button>}
         {isAuthenticated && (
           <>
             {/* Use avatarUrl if available */}

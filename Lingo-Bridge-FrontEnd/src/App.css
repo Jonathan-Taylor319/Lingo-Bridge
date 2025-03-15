@@ -88,11 +88,16 @@ button:active {
   background-color: #287A8D;
   border: 2px solid black;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  padding-top: 2px;
   padding-left: 20px;
   padding-right: 20px;
   margin: auto;
   width: 75%;
+}
+
+.about-div h2 {
+  border: none;
+  background: none;
+  box-shadow: none;
 }
 
 .CPLogo {
@@ -185,22 +190,22 @@ form button:active {
 }
 
 .fancy-button {
-  display: flex;                /* Enable flexbox inside button */
-  align-items: center;          /* Vertically center content */
-  justify-content: center;      /* Horizontally center content */
-  width: 100px;                 /* Set width of the button */
-  height: 45px;                 /* Set height of the button */
-  border-radius: 10px;          /* Rounded corners */
-  background-color: #287A8D;    /* Background color */
-  color: white;                 /* Text color */
-  font-size: 16px;              /* Font size */
-  overflow: hidden;             /* Prevent content from overflowing */
-  padding: 5px;                 /* Optional padding */
-  flex-shrink: 0;               /* Prevent shrinking */
+  display: flex;
+  align-items: center;         
+  justify-content: center;     
+  width: 100px;                
+  height: 45px;                
+  border-radius: 10px;        
+  background-color: #287A8D;   
+  color: white;                
+  font-size: 16px;              
+  overflow: hidden;            
+  padding: 5px;                 
+  flex-shrink: 0;               
 }
 
 .fancy-button p {
-  margin: 0;                    /* Remove default margin */
+  margin: 0;                  
 }
 
 .word-search-container {
@@ -218,7 +223,7 @@ form button:active {
   padding: 10px;
   font-size: 24px;
   max-width: 100%;
-  flex-shrink: 0;  /* Prevents shrinking */
+  flex-shrink: 0;  
 }
 .word-search-results-div {
   display: flex;
@@ -237,8 +242,8 @@ form button:active {
   margin: 10px 0;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers children (h3, p, etc.) horizontally */
-  text-align: center; /* Ensures text inside h3 and p is centered */
+  align-items: center; 
+  text-align: center;
 }
 
 .result h3 {
@@ -248,7 +253,7 @@ form button:active {
 
 .result p {
   font-size: 16px;
-  margin: 5px 0;
+ 
 }
 
 .random-word-of-the-day-container {
@@ -256,8 +261,8 @@ form button:active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 800px;
   margin: 20px auto;
   margin-top: 70px;
   padding: 20px;
@@ -272,7 +277,7 @@ form button:active {
 .random-word-of-the-day-container h2 {
   font-size: 24px;
   font-weight: bold;
-  color: #1B3A57; /* Midnight Blue from your theme */
+  color: #1B3A57;
   margin-bottom: 15px;
 }
 
@@ -280,7 +285,7 @@ form button:active {
   background: linear-gradient(135deg, #2a7f62, #2196f3);
   border: 2px solid black;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  padding: 15px;
+
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -288,7 +293,6 @@ form button:active {
 
 .random-word-of-the-day-container h3 {
   font-size: 22px;
-  color: #F15A29; /* Electric Orange for emphasis */
   margin-bottom: 10px;
 }
 
@@ -300,7 +304,7 @@ form button:active {
 }
 
 .random-word-of-the-day-container p strong {
-  color: #1B3A57; /* Midnight Blue for strong emphasis */
+  color: #1B3A57;
 }
 
 .profilePageMain {
@@ -309,7 +313,7 @@ form button:active {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 75px;
+  margin-top: 45px;
 }
 
 .profileInfo {
@@ -383,9 +387,98 @@ button {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+.tenor-gif-embed {
+  width: 100%; 
+  height: 500px;
+  object-fit: cover;
+}
+
+.list {
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+}
+
 @media (max-width: 768px) {
+  /* General adjustments for mobile */
+  body {
+    font-size: 14px; /* Reduce base font size */
+  }
+
+  /* Adjust image containers for smaller screens */
   .image-left, .image-right {
-    width: 80%; 
-    transform: rotate(0deg); 
+    width: 90%; /* Take up more width on smaller screens */
+    transform: rotate(0deg); /* Remove rotation */
+  }
+
+  /* Flex containers adjustments */
+  .home-container, .word-search-container, .profilePageMain {
+    width: 100%;
+    padding: 10px; /* Add padding for better spacing */
+  }
+
+  /* Adjust form width */
+  form {
+    width: 90%; /* Make the form wider on smaller screens */
+    max-width: 350px;
+  }
+
+  .fancy-button-holder {
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Add spacing between buttons */
+  }
+
+  .fancy-button {
+    width: 80%; /* Make buttons take up more width */
+    height: 40px;
+    font-size: 14px; /* Adjust font size for buttons */
+  }
+
+  /* Adjust random word container */
+  .random-word-of-the-day-container {
+    width: 90%; /* Ensure it fits well */
+    padding: 15px;
+  }
+
+  .random-word-of-the-day-container h2 {
+    font-size: 20px; /* Adjust font size for headings */
+  }
+
+  .random-word-of-the-day-container .result {
+    width: 100%; /* Make the result box full width */
+  }
+
+  /* Adjust profile info box */
+  .profileInfo {
+    width: 90%; /* Allow profile info box to take more width */
+    max-width: 100%;
+  }
+
+  /* Adjust h2 and p for smaller screens */
+  h2, h3 {
+    font-size: 20px; /* Scale down heading font size */
+  }
+
+  p {
+    font-size: 14px; /* Scale down paragraph font size */
+  }
+
+  /* Adjust spacing for buttons */
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Adjust image size in About Section */
+  .familyPhoto {
+    width: 100%; /* Make image take up full width */
+    height: auto;
+  }
+
+  .deleteButton {
+    width: 80px;
+    height: 80px; /* Make the delete button smaller */
+    font-size: 12px;
   }
 }

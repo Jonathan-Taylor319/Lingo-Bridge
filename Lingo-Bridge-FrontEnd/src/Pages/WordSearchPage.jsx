@@ -55,6 +55,7 @@ export default function WordSearching() {
           />
         </div>
           <button type="submit">Search</button>
+          <p> results will be shown below</p>
         </form>
 
 
