@@ -3,58 +3,55 @@ import { useEffect, useState } from "react";
 const GenZSlang = () => {
     const [slangList, setSlangList] = useState([]);
     const [error, setError] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        const fetchGenZSlang = async () => {
+        const fetchSlang = async () => {
             try {
-                const endpoint = "https://en.wikipedia.org/w/api.php";
-                const params = {
-                    action: "query",
-                    format: "json",
-                    titles: "Glossary_of_Generation_Z_slang",
-                    prop: "extracts",
-                    exintro: true, // Get only the intro
-                    exchars: 1000, // Limit to 1000 characters of the intro
-                };
-
-                const url = `${endpoint}?${new URLSearchParams(params)}`;
-
-                const response = await fetch(url);
-                console.log(response)
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+                const response = await fetch("http://localhost:8000/api/slang/");
+                if (!response.ok) throw new Error("Failed to fetch slang words");
 
                 const data = await response.json();
-                console.log("API Data:", data); // Check the data returned from API
-
-                // Extract the page content (introduction)
-                const page = data.query.pages[Object.keys(data.query.pages)[0]];
-                const introText = page.extract;
-
-                if (introText) {
-                    // Assuming we want to display the intro text, not an array of slang
-                    setSlangList([introText]); // Set the intro as the slangList (you may need to adjust based on your actual format)
-                } else {
-                    console.error("No intro found for the page.");
-                    setError("No Gen Z slang found.");
-                }
+                setSlangList(data.slang);
             } catch (err) {
-                console.error("Error fetching slang:", err);
-                setError("Failed to fetch slang words.");
+                console.error("Error:", err);
+                setError("Could not load slang words.");
             }
         };
 
-        fetchGenZSlang();
+        fetchSlang();
     }, []);
+
+    const handleSearch = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/slang/search/?q=${searchTerm}`);
+            if (!response.ok) throw new Error("Failed to search slang");
+
+            const data = await response.json();
+            setSlangList(data.results);
+        } catch (err) {
+            console.error("Error:", err);
+            setError("Search failed.");
+        }
+    };
 
     return (
         <div>
             <h2>Gen Z Slang</h2>
+            <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search slang..."
+            />
+            <button onClick={handleSearch}>Search</button>
+
             {error ? <p style={{ color: "red" }}>{error}</p> : null}
             <ul>
                 {slangList.map((slang, index) => (
-                    <li key={index}>{slang}</li> // Display intro text or update logic if it's structured differently
+                    <li key={index}>
+                        <strong>{slang.term}:</strong> {slang.definition}
+                    </li>
                 ))}
             </ul>
         </div>

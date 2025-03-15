@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserTokenContext from "../contexts/TokenContext";
 import { UserInfoContext } from "../contexts/UserInfoContext";
-import FancyButtons from "../components/FancyButtons";
+import FancyButtons from "../components/FunctionButtons";
 
 export default function ProfilePage() {
     const navigate = useNavigate();
@@ -25,9 +25,8 @@ export default function ProfilePage() {
         if (!window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
             return;
         }
-
+ 
         setIsDeleting(true);
-
      
         navigate('/');
 
@@ -115,9 +114,7 @@ export default function ProfilePage() {
 
     return (
         <>
-        < FancyButtons />
         <div className="profilePageMain">
-                <h2>Profile Page</h2>
             <div className="profileInfo">
                 <div className="currentProfileInfo">      
                 {avatarUrl && <img src={avatarUrl} alt="User Avatar" style={{ width: "100px", borderRadius: "50%" }} />}

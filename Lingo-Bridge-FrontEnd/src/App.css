@@ -46,14 +46,11 @@ button:active {
 }
 
 .sign-up-in-button-div {
-  display: flex;
-  justify-content: center; 
-  align-items: center;    
+  display: flex; 
   gap: 5px;               
   width: 100%;            
   flex-wrap: wrap;
-  padding-top: 65px;
-  padding-bottom: 25px;       
+  margin-bottom: 20px;   
 }
 
 .home-container {
@@ -65,6 +62,7 @@ button:active {
   align-items: center; 
   text-align: center; 
   gap: 20px; 
+  padding-top: 65px;
 }
 
 .home-image-container {
@@ -108,37 +106,6 @@ button:active {
   height: 200px;
   display: block;
   margin: auto;
-}
-
-.profileInfo {
-  align-self: center;
-  background: linear-gradient(135deg, #2a7f62, #2196f3);
-  color: white;
-  border: 2px solid black;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  padding: 20px 40px; /* More padding for a filled look */
-  border-radius: 20px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  margin: 20px auto;
-  width: 150%; /* Wider box */
-  max-width: 1000px; /* Increase max-width */
-  min-width: 400px; /* Prevent it from shrinking too much */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profilePageMain {
-  display: flex; /* Enable flexbox */
-  flex-direction: column; /* Stack children vertically */
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  padding: 10px;
-  box-sizing: border-box;
-  width: 100%; /* Full width */
-  height: 100vh; /* Full viewport height */
 }
 
 form {
@@ -208,31 +175,21 @@ form button:active {
   font-weight: bold;
 }
 
-.fancy-main-div {
-  display: flex;
-  flex-direction: column;  /* Stack items vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center;     /* Center content horizontally */
-  gap: 20px;               /* Space between h2 and buttons */
-  padding-top: 65px;
-  padding-bottom: 28px;
-}
-
 .fancy-button-holder {
-  display: flex;                /* Enable flexbox */
-  justify-content: center;      /* Center the buttons horizontally */
-  gap: 10px;                    /* Space between buttons */
-  flex-wrap: wrap;              /* Allow buttons to wrap if necessary */
+  display: flex;                
+  justify-content: end;      
+  gap: 2px;                  
   width: 100%;
-  max-width: 1000px;            /* Optional: limit the width */
+  max-width: 1000px;
+  margin-bottom: 10px;;
 }
 
 .fancy-button {
   display: flex;                /* Enable flexbox inside button */
   align-items: center;          /* Vertically center content */
   justify-content: center;      /* Horizontally center content */
-  width: 200px;                 /* Set width of the button */
-  height: 60px;                 /* Set height of the button */
+  width: 100px;                 /* Set width of the button */
+  height: 45px;                 /* Set height of the button */
   border-radius: 10px;          /* Rounded corners */
   background-color: #287A8D;    /* Background color */
   color: white;                 /* Text color */
@@ -240,13 +197,6 @@ form button:active {
   overflow: hidden;             /* Prevent content from overflowing */
   padding: 5px;                 /* Optional padding */
   flex-shrink: 0;               /* Prevent shrinking */
-}
-
-.fancy-button img {
-  max-width: 50%;               /* Ensure the image takes up no more than 50% */
-  max-height: 80%;              /* Ensure image doesn't stretch */
-  object-fit: contain;          /* Maintain aspect ratio */
-  margin-right: 10px;           /* Add space between image and text */
 }
 
 .fancy-button p {
@@ -259,6 +209,7 @@ form button:active {
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 40px;
 }
 
 .word-search-container h2 {
@@ -284,11 +235,15 @@ form button:active {
   border-radius: 8px;
   width: 80%;
   margin: 10px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers children (h3, p, etc.) horizontally */
+  text-align: center; /* Ensures text inside h3 and p is centered */
 }
 
 .result h3 {
   font-size: 20px;
+  align-self: center;
 }
 
 .result p {
@@ -304,6 +259,7 @@ form button:active {
   width: 90%;
   max-width: 600px;
   margin: 20px auto;
+  margin-top: 70px;
   padding: 20px;
   background: linear-gradient(135deg, #2a7f62, #2196f3);
   border: 2px solid black;
@@ -350,19 +306,30 @@ form button:active {
 .profilePageMain {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers items horizontally */
-  justify-content: flex-start; /* Aligns items at the top */
-  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 75px;
 }
 
 .profileInfo {
-  width: 100%;
-  max-width: 600px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 20px; /* Controls spacing between buttons and profile info */
+  align-self: center;
+  background: linear-gradient(135deg, #2a7f62, #2196f3);
+  color: white;
+  border: 2px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 20px 40px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px auto;
+  width: 80%; /* Adjusted for better centering */
+  max-width: 1000px;
+  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .signInForm {

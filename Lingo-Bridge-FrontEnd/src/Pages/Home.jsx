@@ -6,7 +6,6 @@ import Grandma from '../assets/Grandma.jpg'
 export default function Home() {
     return (
         <>
-            < SignInUpButtons />
             <div className="home-container">
             <h2>Please Log in or Sign-Up</h2>
             <h2 style={{ textAlign:"center"}}>Get in here and get the ☕️ TEA!</h2>

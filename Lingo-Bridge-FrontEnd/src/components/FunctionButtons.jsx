@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import FancySearchButton from '../assets/FancySearchButton.png';
-import profile2 from '../assets/profile2.png';
+import UserTokenContext from "../contexts/TokenContext";
 
 export default function FancyButtons() {
   const navigate = useNavigate()
-  
+  const { clearUserToken } = useContext(UserTokenContext)
+
+  const handleLogout = () => {
+    clearUserToken();
+    sessionStorage.removeItem("userToken");
+    navigate("/");
+  };
 
   return (
-    <div className="fancy-main-div">
-      <h2>what's your JAM?</h2>
+  
         <div className="fancy-button-holder">
           <button className="fancy-button" onClick={() => navigate("/wordsearch")}>
             {/* <img src={FancySearchButton} alt="Search" /> */}
@@ -28,9 +32,14 @@ export default function FancyButtons() {
       
           <button className="fancy-button" onClick={() => navigate("/signedinhome")}>
           {/* <img src={quiz_button_better} alt="Quiz" /> */}
-          Menu      
+          Word of the Day     
           </button>
+
+          <button className="fancy-button" onClick={ handleLogout } style={{background:"#1E6D89", border:"2px, solid, black", color:"white", marginBottom:"10px"}}>
+           Sign Out
+          </button>
+
         </div>
-    </div>
+    
   );
 }

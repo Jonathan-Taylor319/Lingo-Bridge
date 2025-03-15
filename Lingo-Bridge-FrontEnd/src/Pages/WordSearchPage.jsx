@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FancyButtons from '../components/FancyButtons';
 import { Filter } from 'bad-words'; // Corrected import
 
 export default function WordSearching() {
@@ -38,9 +37,7 @@ export default function WordSearching() {
 
   return (
     <>
-      <FancyButtons />
       <div className='word-search-container'>
-        <h2>Search for a word</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
