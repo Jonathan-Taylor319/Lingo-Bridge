@@ -29,7 +29,7 @@ export default function SignInPage() {
         setErrorMessage("");
 
         try {
-            const response = await fetch("http://localhost:8000/user/get-token/", {
+            const response = await fetch("http://3.149.23.222:8000/user/get-token/", {
                 method: "POST", 
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),

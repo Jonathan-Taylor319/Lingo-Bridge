@@ -31,7 +31,7 @@ export default function ProfilePage() {
         navigate('/');
 
         try {
-            const response = await fetch("http://localhost:8000/user/delete-user/", {
+            const response = await fetch("http://3.149.23.222:8000/user/delete-user/", {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Token ${token}`,
@@ -62,7 +62,7 @@ export default function ProfilePage() {
         setIsLoading(true);
 
         try {
-            const response = await fetch("http://localhost:8000/user/update-user/", {
+            const response = await fetch("http://3.149.23.222:8000/user/update-user/", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -88,7 +88,7 @@ export default function ProfilePage() {
         if (token) {
             const fetchUserData = async () => {
                 try {
-                    const response = await fetch("http://localhost:8000/user/get-user/", {
+                    const response = await fetch("http://3.149.23.222:8000/user/get-user/", {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
